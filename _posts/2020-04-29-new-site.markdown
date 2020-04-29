@@ -5,8 +5,8 @@ date:   2020-04-29 16:19:00 +0200
 categories: jekyll
 ---
 
-This is my first site using Jekyll, I switched from the old wordpress site hosted elsewhere to Github Pages.
+This is my first site using [Jekyll](https://jekyllrb.com/){:target="_blank"}, I switched from the old wordpress site hosted elsewhere to Github Pages.
 
-This site is based on minimal theme, but overrided tiny details as a start.
+This site is based on [minima theme](https://github.com/jekyll/minima){:target="_blank"}, but overrided tiny details as a start.
 
 Cheers!
