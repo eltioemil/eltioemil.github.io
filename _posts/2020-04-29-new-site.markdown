@@ -1,0 +1,12 @@
+---
+layout: post
+title:  "New site"
+date:   2020-04-29 16:19:00 +0200
+categories: jekyll
+---
+
+This is my first site using Jekyll, I switched from the old wordpress site hosted elsewhere to Github Pages.
+
+This site is based on minimal theme, but overrided tiny details as a start.
+
+Cheers!
