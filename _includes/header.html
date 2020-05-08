@@ -1,5 +1,9 @@
 <header class="site-header" role="banner" id="site-header">
 
+  <div class="progress-container">
+    <div class="progress-bar" id="theProgressBar"></div>
+  </div>
+
   <div class="wrapper">
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
