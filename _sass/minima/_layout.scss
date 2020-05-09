@@ -24,6 +24,14 @@
   }
 }
 
+.logo {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 40px;
+  min-height: 30px;
+  max-height: 50px;
+}
+
 .site-nav {
   float: right;
   line-height: $base-line-height * $base-font-size * 2.25;
@@ -186,6 +194,7 @@
 
 .post-list-heading {
   @include relative-font-size(1.75);
+  display: none;
 }
 
 .post-list {
@@ -204,7 +213,7 @@
 
 .post-link {
   display: block;
-  @include relative-font-size(1.5);
+  @include relative-font-size(1.2);
 }
 
 
@@ -279,4 +288,13 @@
   height: 5px;
   background: $grey-color-dark;
   width: 0%;
+}
+
+/**
+* Hide index-page title
+* Index page should has this id
+**/
+
+#index-page {
+  display:none;
 }

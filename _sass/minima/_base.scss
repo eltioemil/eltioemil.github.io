@@ -14,7 +14,7 @@ dl, dd, ol, ul, figure {
  * Basic styling
  */
 body {
-  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family-monospace;
   color: $text-color;
   background-color: $background-color;
   -webkit-text-size-adjust: 100%;
@@ -40,7 +40,20 @@ ul, ol, dl, figure,
   margin-bottom: $spacing-unit / 2;
 }
 
+/**
+ * Excerpt style
+ */
+excerpt-style p {
+  color: $grey-color;
+  @include relative-font-size(.9);
+  font-style: italic;
+  margin-left: 10px;
+  margin-top: 5px;
 
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
 
 /**
  * `main` element

@@ -1,12 +1,12 @@
 ---
 layout: index
+title: "index-page"
 ---
-
-[![Emilio Ureña](passing.svg)](/)
 
 ### A DevOps practitioner
 
 During the last ten years I've dedicated myself to system administration, both physical and cloud. Always focusing on the development-operations fusion. Mainly I've specialized on continuous automation and integration of software, infrastructure as code and configuration management using existing tools or creating my own ones; all this from agile methodologies perspective.
+
 
 ### Moar Tech!
 
