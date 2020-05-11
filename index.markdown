@@ -35,7 +35,7 @@ This list has gone way too large again, is not possible to shrink it... If you a
 Oh, I almost forgot, I also have experienced the joys of being [manager](./assets/Douglas_Reynholm.jpg){:target="_blank"} and tech lead.
 
 
-### Some companies payed me money for doing what I like
+### Some companies even payed me for this!
 
 | Where? | When? | What? |
 | ------ | ------ |------ |
