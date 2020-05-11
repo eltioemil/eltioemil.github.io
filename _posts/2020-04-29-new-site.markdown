@@ -65,3 +65,15 @@ And the css:
 And that is pretty much it for a first post.
 
 Cheers!
+
+### Edited
+
+There was an issue with the javascript code in chrome mobile browser. As you might know, Chrome for mobile hides the address bar on scroll down, so, to avoid that offset on scrolling, I used window.innerHeight instead of clientHeight on documentElement. This might be basic for front end developers, but for me is something I just discovered now, LOL:
+
+```js
+var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+var height = document.documentElement.scrollHeight - window.innerHeight;
+var scrolled = (winScroll / height) * 100;
+
+document.getElementById("theProgressBar").style.width = scrolled + "%";
+```
