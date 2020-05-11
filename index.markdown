@@ -3,41 +3,46 @@ layout: index
 title: "index-page"
 ---
 
-### A DevOps practitioner
+### They call me DevOps
 
-During the last ten years I've dedicated myself to system administration, both physical and cloud. Always focusing on the development-operations fusion. Mainly I've specialized on continuous automation and integration of software, infrastructure as code and configuration management using existing tools or creating my own ones; all this from agile methodologies perspective.
+I am quite lazy and I tend to forget everything, so, that inevitablely drove me to automation and writing things as code. And that is what I have been doing for about twelve years now. Apparently, I am not the only one, and people like me are called DevOps. But I preffer to say that we are system administrators that embrace DevOps culture.
 
 
 ### Moar Tech!
 
-* [CloudFormation](https://aws.amazon.com/cloudformation/){:target="_blank"} and [Terraform](https://www.terraform.io/){:target="_blank"} - Infrastructure as code.
-* [Saltstack](https://www.saltstack.com/){:target="_blank"} - Infrastructure as data.
-* Monitor: CloudWatch, Nagios, Icinga, Prometheus and Splunk.
-* Time series analytics: Grafana, Kibana, Munin and RRDTool.
-* Log management: Logstash, Graylog and Splunk.
-* Confguraton management tools: Ansible, Puppet (hiera, librarian-puppet) and Chef.
-* Kubernetes, Docker and Helm.
-* CI/CD: Jenkins, Bamboo, Go-cd and Concourse. Blue-green deployments experience, test driven deployments, etc.
-* Public cloud: AWS, Azure and Google Cloud. Solid experience in AWS.
-* PaaS: Pivotal Cloud Foundry with Google Cloud provider.
-* Private cloud: Opennebula, KVM, XEN, Vagrant and the good old Proxmox.
-* Programming languages: Mainly Python but sometimes Perl. Basic programming skills in Java, Go, Ruby, PHP and Scala. And BASH scripting.
-* SQL databases: MySQL and PostgreSQL. NoSQL: MongoDB and DynamoDB. Datastores: Redis. Data Warehouse: Amazon Redshif.
-* Agile methodologies that I've worked with: Scrum, Kanban and Lean.
+On previous versions of this website, I had this fancy list of technologies I have used enought to be able to say I knew them. The list keept growing as technology and necessity did and it became way too large. So I just decided to stop this suffering today.
+
+Lately I have been mostly working on Cloud, but I have seen places in my past, even Datacenters:
+* Mostly [AWS](https://aws.amazon.com/){:target="_blank"}, but I also used [GCP](https://cloud.google.com/){:target="_blank"} on my HEAD^1 job.
+* I had the pleasure to experience something called [Pivotal Cloud Foundry](https://run.pivotal.io/){:target="_blank"} too.
+
+My first contact with infrastructure as code was [Cloudformation](https://aws.amazon.com/cloudformation){:target="_blank"}, but, like few relationships, it ended up in good terms and I mostly use [terraform](https://www.terraform.io/){:target="_blank"} now.
+
+And yes, I know a couple things about config management:
+* [Ansible](https://www.ansible.com/){:target="_blank"} and it's idempotencies.
+* [Puppet](https://puppet.com/){:target="_blank"}, we all had a first love, right?
+
+And everything else:
+* All the monitoring and graphs: the oldies, the [Nagios](https://www.nagios.com/){:target="_blank"} and the [Icinga](https://icinga.com/){:target="_blank"}, the [Munin](http://munin-monitoring.org/){:target="_blank"}; new ones, the [Prometheus](https://prometheus.io/){:target="_blank"}, the [fluentd's](https://www.fluentd.org/){:target="_blank"} and [Grafanas](https://grafana.com/){:target="_blank"}; the expensive ones, [Splunk](https://www.splunk.com/){:target="_blank"} and the [Newrelics](https://newrelic.com/){:target="_blank"}, etc.
+* Continuous integration, deployment and delivery: [Jenkins](https://www.jenkins.io/){:target="_blank"}, [Go-CD](https://www.gocd.org/){:target="_blank"} (Yes, I have used it), [Concourse](https://concourse-ci.org/){:target="_blank"}, [Bamboo](https://www.atlassian.com/software/bamboo){:target="_blank"}, etc.
+* Logs! [ELK](https://www.elastic.co/es/what-is/elk-stack){:target="_blank"}, EFK...
+* All the Databases, SQL, noSQL... but Oracle, LOL. You name it.
+
+This list has gone way too large again, is not possible to shrink it... If you are curious, just ask me, I am on [linkedin](https://www.linkedin.com/in/eltioemil){:target="_blank"}.
+
+Oh, I almost forgot, I also have experienced the joys of being [manager](./assets/Douglas_Reynholm.jpg){:target="_blank"} and tech lead.
 
 
-### Places I have worked
-
-These are the latest places I have worked in my career, for more info, please check my Linkedin page.
+### Some companies payed me money for doing what I like
 
 | Where? | When? | What? |
 | ------ | ------ |------ |
-| [Clarivate Analytics](https://clarivate.com/){:target="_blank"}  | Current since May 2020 | Senior DevOps |
+| [Clarivate Analytics](https://clarivate.com/){:target="_blank"}  | Current since May 2020 | I currently work as a platform automation senior DevOps Engineer |
 | [StubHub](https://www.stubhub.com/){:target="_blank"} | May 2018 - May 2020 | I entered as Senior DevOps engineer but I ended up as Junior Manager of a DevOps team. |
-| [BBVA Next](https://www.bbvanexttechnologies.com){:target="_blank"} | Jan 2016 - May 2018 | Cloud DevOps in several projects within IBEX35 major companies. (Former BEEVA). |
-| [Rentalia](https://www.rentalia.com){:target="_blank"} | July 2013 - Jan 2016 | DevOps with my own Datacenter and physical machines. |
+| [BBVA Next](https://www.bbvanexttechnologies.com){:target="_blank"} | Jan 2016 - May 2018 | Cloud DevOps practitioner in several projects within IBEX35 major companies. (Former BEEVA). |
+| [Rentalia](https://www.rentalia.com){:target="_blank"} | July 2013 - Jan 2016 | DevOps with my own Datacenter to play with and physical servers. |
 | [Previously](https://www.ferri.es/){:target="_blank"} | July 2008 - July 2013 | I was IT department manager for 5 years, and a couple years teaching about computers |
 
-### Contact
+### Contact with me
 
-If you want to contact with me, please don't hesitate to add me on my [Linkedin](https://www.linkedin.com/in/eltioemil){:target="_blank"} .
+If you want to contact with me, we can be buds on [Linkedin](https://www.linkedin.com/in/eltioemil){:target="_blank"} and chat a bit.
