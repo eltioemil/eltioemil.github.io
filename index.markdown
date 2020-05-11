@@ -10,7 +10,7 @@ I am quite lazy and I tend to forget everything, so, that inevitablely drove me 
 
 ### Moar Tech!
 
-On previous versions of this website, I had this fancy list of technologies I have used enought to be able to say I knew them. The list keept growing as technology and necessity did and it became way too large. So I just decided to stop this suffering today.
+On previous versions of this website, I had this fancy list of technologies I have used enough to be able to say I knew them. The list keept growing as technology and necessity did and it became way too large. So I just decided to stop this suffering today.
 
 Lately I have been mostly working on Cloud, but I have seen places in my past, even Datacenters:
 * Mostly [AWS](https://aws.amazon.com/){:target="_blank"}, but I also used [GCP](https://cloud.google.com/){:target="_blank"} on my HEAD^1 job.
@@ -27,6 +27,8 @@ And everything else:
 * Continuous integration, deployment and delivery: [Jenkins](https://www.jenkins.io/){:target="_blank"}, [Go-CD](https://www.gocd.org/){:target="_blank"} (Yes, I have used it), [Concourse](https://concourse-ci.org/){:target="_blank"}, [Bamboo](https://www.atlassian.com/software/bamboo){:target="_blank"}, etc.
 * Logs! [ELK](https://www.elastic.co/es/what-is/elk-stack){:target="_blank"}, EFK...
 * All the Databases, SQL, noSQL... but Oracle, LOL. You name it.
+
+I didn't mention [k8s](https://kubernetes.io/){:target="_blank"}, [Docker](https://www.docker.com/){:target="_blank"} or [Helm](https://helm.sh/){:target="_blank"}. But that was on purpose. Wait...
 
 This list has gone way too large again, is not possible to shrink it... If you are curious, just ask me, I am on [linkedin](https://www.linkedin.com/in/eltioemil){:target="_blank"}.
 
