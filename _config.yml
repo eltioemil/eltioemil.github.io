@@ -1,4 +1,4 @@
-title: Eltioemil
+title: "El tío Emil"
 show_excerpts: true
 description: >-
   These are not the droids you were looking for.
@@ -8,6 +8,7 @@ github_username:  eltioemil
 linkedin_username: eltioemil
 
 # Build settings
+# This theme overrides minima theme
 theme: minima
 
 plugins:

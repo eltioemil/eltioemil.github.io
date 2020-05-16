@@ -7,7 +7,6 @@ title: "index-page"
 
 I am quite lazy and I tend to forget everything, so, that inevitablely drove me to automation and writing things as code. And that is what I have been doing for about twelve years now. Apparently, I am not the only one, and people like me are called DevOps. But I preffer to say that we are system administrators that embrace DevOps culture.
 
-
 ### Moar Tech!
 
 On previous versions of this website, I had this fancy list of technologies I have used enough to be able to say I knew them. The list keept growing as technology and necessity did and it became way too large. So I just decided to stop this suffering today.
@@ -33,7 +32,6 @@ I didn't mention [k8s](https://kubernetes.io/){:target="_blank"}, [Docker](https
 This list has gone way too large again, is not possible to shrink it... If you are curious, just ask me, I am on [linkedin](https://www.linkedin.com/in/eltioemil){:target="_blank"}.
 
 Oh, I almost forgot, I also have experienced the joys of being [manager](./assets/Douglas_Reynholm.jpg){:target="_blank"} and tech lead.
-
 
 ### Some companies even payed me for this!
 
