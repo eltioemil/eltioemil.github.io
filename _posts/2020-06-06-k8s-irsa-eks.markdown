@@ -149,7 +149,7 @@ And that's it, we now have a IAM role that can use our OIDC to obtain trust in o
 
 Actually, we already did this. As we specified our relationship with the service account, in our example, `autoscaler-service-account` in our role. What it's left to do is to use it in our deployment, replicaset, pod, etc.
 
-In my case I was going full terraform, so I used helm terraform provider in order to create a helm release throgh terrafom using the stable official Cluster Autoscaler helm chart. If you do this, is quite easy to configure, [the chart is ready for using IRSA](https://github.com/helm/charts/tree/master/stable/cluster-autoscaler#iam-roles-for-service-accounts-irsa){:target="_blank"} so you only need to pass an annotation in the service account annotations.
+In my case I was going full terraform, so I used helm terraform provider in order to create a helm release through terrafom using the stable official Cluster Autoscaler helm chart. If you do this, is quite easy to configure, [the chart is ready for using IRSA](https://github.com/helm/charts/tree/master/stable/cluster-autoscaler#iam-roles-for-service-accounts-irsa){:target="_blank"} so you only need to pass an annotation in the service account annotations.
 
 This, translated into terraform helm provider, becomes a set. And, this is what nobody explains, you need to scape special characters in order to make it work:
 
