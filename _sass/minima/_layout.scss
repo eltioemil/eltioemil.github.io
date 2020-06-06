@@ -209,12 +209,16 @@
   color: $grey-color;
 }
 
+.post-read-more {
+  font-size: $small-font-size;
+  color: $grey-color;
+  float: right;
+}
+
 .post-link {
   display: block;
   @include relative-font-size(1.2);
 }
-
-
 
 /**
  * Posts

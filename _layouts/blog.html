@@ -18,7 +18,8 @@ layout: default
           {{ post.title | escape }}
         </a>
         {%- if site.show_excerpts -%}
-        <excerpt-style>{{ post.excerpt }}</excerpt-style>
+        <excerpt-style>{{ post.excerpt | truncate: 400 }}</excerpt-style>
+        <p><a class="post-read-more" href="{{ post.url | relative_url }}"> Keep reading...</a></p>
         {%- endif -%}
       </h3>
     </li>

@@ -117,15 +117,15 @@
   * Links
   */
   a {
-    color: $brand-color;
-    text-decoration: none;
+    color: darken($grey-color, 15%);
+    text-decoration: none ;
 
     &:visited {
-      color: darken($brand-color, 15%);
+      color: darken($grey-color, 15%);;
     }
 
     &:hover {
-      color: $text-color;
+      color: $grey-color;
       text-decoration: underline;
     }
 
