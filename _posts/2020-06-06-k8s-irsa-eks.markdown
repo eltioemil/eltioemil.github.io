@@ -1,0 +1,169 @@
+---
+layout: post
+title:  "EKS for humans 1: IRSA in EKS or how to link Service Accounts with IAM roles"
+date:   2020-06-26 10:00:00 +0200
+categories: kubernetes
+---
+
+For the last couple of weeks I've been setting up kubernetes on AWS EKS service with terraform provider. So I wanted to take this opportunity to start digging around and really learn how EKS works and see what these AWS folks built on top of kubernetes. That is why I wanted to start this series of posts called *EKS for humans* where I would try to explain things that, at this point today, are not so widely documented or, from my point of view not so clear. Things that, after struggling with them to figure out how they work I realized that I would loved to have a single post that compiled all the pieces in the most clear way possible. I know this may be ambitious, but I will write them as if they were for my own personal use. Don't expect the Shakespeare of DevOps engineering here, folks.
+
+### What is IRSA
+
+Well, as you can google this to find more information about it, in a nutshell, IRSA stands for IAM Roles for Service Accounts. Meaning that is a mechanism to attach an IAM role to a kubernetes service account and manage privileges through IAM roles and policies instead of using RBAC. I am not going to go through why someone would like to use this instead of RBAC, this is not the post for that. But, assuming we want to use it, let's see how to do that.
+
+If you need more information, just let me google it for you: [What is EKS IRSA?](https://lmgtfy.com/?q=what+is+EKS+IRSA&pp=1){:target="_blank"}
+
+### First piece of the puzzle, OpenID provider
+
+EKS makes use of [OpenID connect](https://openid.net/connect/) to stablish trust. Like I mentioned, in my case I was using terraform in order to automate infrastructure deployment, so I will use it for the code examples. If you create this manually it will be way easier as AWS Console (or cli) would do some steps automatically for you. But, if you want to use terraform, you will have to perform an extra step. I will explain that below, but this is basically how we create an OIDC (out of OpenID connector) in AWS with terraform (assuming we already created our EKS cluster called 'eks'):
+
+
+```sh
+resource "aws_iam_openid_connect_provider" "eks_openid_provider" {
+  client_id_list  = ["sts.amazonaws.com"]
+  thumbprint_list = [data.external.thumbprint.result.thumbprint]
+  url             = aws_eks_cluster.eks.identity.0.oidc.0.issuer
+}
+```
+
+Like I have mentioned before, if you create this with AWS console, it will populate thumbprint_list automatically, but, as we are going to do it though terraform we will have to create it ourselves. Basically the thumbprint is obtained from the CA root certificate from oidc.eks.[YOUR_AWS_REGION].amazonaws.com then we get the fingerprint from it and remove colon characters (:) from it, and that is the value we need to insert in the resource in json format like this:
+
+```sh
+"{"thumbprint": "990F4193972F2BECF12DDEDA5237F9C952F20D9E"}"
+```
+
+We can do this manually or create a script to do this when we create our infrastructure. A dirty one liner that will work on Linux and Mac could be:
+
+```sh
+openssl s_client -servername oidc.eks.[YOUR_REGION].amazonaws.com -showcerts -connect oidc.eks.[YOUR_REGION].amazonaws.com:443 2>&- | tail -r | sed -n '/-----END CERTIFICATE-----/,/-----BEGIN CERTIFICATE-----/p; /-----BEGIN CERTIFICATE-----/q' | tail -r | openssl x509 -fingerprint -noout | sed 's/://g' | awk -F= '{print tolower($2)}'
+```
+
+This can be done in more elegant ways but I decided to not use IRSA in my cluster for different reasons and I didn't wanted to spend time on this script but, please, take the time to improve it if you want to use it. 
+
+After we obtained our thumbprint, we only need to set the output in the json format explained above and we can invoke the script it with:
+
+```sh
+data "external" "thumbprint" {
+  program = ["${path.module}/your-awesome-oidc-thumbprint-script.sh", data.aws_region.current.name]
+}
+```
+
+And this is it, we created our OIDC with terraform.
+
+### The second piece, link IAM roles with OIDC
+
+Now we need to create a IAM role that makes usage of the OIDC. Because if we try to pass a IAM role to a deployment, replicaset or pod, EKS will let us know that it does not trust us because we didn't set up our OIDC provider correctly. So we need to add a trust relationship in our role that links with our OIDC. It's a bit odd, but I didn't went deep on the reasons why you would need to be trusted in your own cluster within your own account using IAM roles in that same account, but I am sure there is a good super complicated explanation for this that I will definitely not read ever in my life.
+
+Let's use the Cluster Autoscaler as an example for this. We will give the Autoscaler permissions to do it's autoscaling thing through IRSA, which is better than using kube2iam because this way we would not need to give permissions to our worker nodes. So, let's create our Autoscaling policy that will allow to modify some values in our worker nodes autoscaling groups. This is a policy for that:
+
+```sh
+data "aws_iam_policy_document" "cluster_autoscaler_document" {
+  statement {
+    sid    = "AllowDescribeAll"
+    effect = "Allow"
+    actions = [
+      "autoscaling:DescribeAutoScalingGroups",
+      "autoscaling:DescribeAutoScalingInstances",
+      "autoscaling:DescribeLaunchConfigurations",
+      "autoscaling:DescribeTags"
+    ]
+    resources = ["*"]
+  }
+  statement {
+    sid    = "AllowModifyOnlycluster"
+    effect = "Allow"
+    actions = [
+      "autoscaling:SetDesiredCapacity",
+      "autoscaling:TerminateInstanceInAutoScalingGroup"
+    ]
+    resources = var.asg_arns #This variable will contain our worker nodes autoscaling group arn's. This can be also a wildcard arn for autoscaling groups ¯\_(ツ)_/¯
+  }
+}
+
+resource "aws_iam_policy" "cluster_autoscaler_policy" {
+  name   = "eks_cluster_autoscaler"
+  path   = "/"
+  policy = data.aws_iam_policy_document.cluster_autoscaler_document.json
+}
+```
+
+And the role where we will be attaching this policy:
+
+
+```sh
+resource "aws_iam_role" "autoscaler" {
+  name               = "eks_my-fancy-cluster-autoscaler-role"
+  path               = "/"
+  assume_role_policy = data.aws_iam_policy_document.eks_openid_provider_assume_role_policy.json
+}
+
+# From this doc: https://docs.aws.amazon.com/eks/latest/userguide/create-service-account-iam-policy-and-role.html
+data "aws_iam_policy_document" "eks_openid_provider_assume_role_policy" {
+  statement {
+    actions = ["sts:AssumeRoleWithWebIdentity"] #This is important
+    effect  = "Allow"
+
+    condition {
+      test     = "StringEquals"
+      variable = "${replace(aws_iam_openid_connect_provider.eks_openid_provider.url, "https://", "")}:sub"
+      values   = ["system:serviceaccount:[YOUR_NAMESPACE]:[YOUR_SERVICEACCOUNT]"]
+    }
+
+    principals {
+      identifiers = [aws_iam_openid_connect_provider.eks_openid_provider.arn]
+      type        = "Federated"
+    }
+  }
+}
+```
+
+Let me go trough the trust relationship a bit more in detail, because I believe that this is the problem with all documentation I found, and the motivator that drove me to write this post in the first place.
+
+The condition block, in json, would look like:
+
+
+```json
+"Condition": {
+    "StringEquals": {
+        "${OIDC_PROVIDER_URL}:sub": "system:serviceaccount:${NAMESPACE}:${SERVIEACCOUNT-NAME}"
+    }
+}
+```
+
+In english, what we need is to trust our OIDC that we created before as federated identity when this condition matches. And it is very important that we set the service account for our autoscaler right. If our autoscaler service account is on a namespace called `infrastructure` and our autoscaler service account is called, in an outstanding effort to name things in a cool way, `autoscaler-service-account`; the string will be `system:serviceaccount:infrastructure:autoscaler-service-account`.
+
+This might seem obvious but in many, many documentations there was this copy/pasted example that used names that didn't make clear that what we need to relate here is the actual service account of some service in our cluster. As they used generic names, this might get confusing sometimes. So I wanted to explain this really carefully.
+
+Going back to our autoscaler, now we need to attach our autoscaler policy to this role we just created:
+
+```sh
+resource "aws_iam_role_policy_attachment" "cluster_autoscaler_attach" {
+  role       = aws_iam_role.autoscaler.id
+  policy_arn = aws_iam_policy.cluster_autoscaler_policy.arn
+}
+```
+
+And that's it, we now have a IAM role that can use our OIDC to obtain trust in our cluster.
+
+### The third and last piece, how to use this role with a Service Account
+
+Actually, we already did this. As we specified our relationship with the service account, in our example, `autoscaler-service-account` in our role. What it's left to do is to use it in our deployment, replicaset, pod, etc.
+
+In my case I was going full terraform, so I used helm terraform provider in order to create a helm release throgh terrafom using the stable official Cluster Autoscaler helm chart. If you do this, is quite easy to configure, [the chart is ready for using IRSA](https://github.com/helm/charts/tree/master/stable/cluster-autoscaler#iam-roles-for-service-accounts-irsa){:target="_blank"} so you only need to pass an annotation in the service account annotations.
+
+This, translated into terraform helm provider, becomes a set. And, this is what nobody explains, you need to scape special characters in order to make it work:
+
+```sh
+  set {
+    name  = "rbac.serviceAccountAnnotations.eks\\.amazonaws\\.com/role-arn"
+    value = aws_iam_role.autoscaler.arn
+  }
+```
+
+Also, we need to specify in the chart our service account name and allow the chart to create it with that name, or we need to create it ourselves, but there is no point on using a helm chart that creates all the RBAC for you and not using it. I suggest that if you want to create the service account yourself, then you use a deployment instead of helm and do all the config yourself. This helm chart is a fast track way to set autoscaler with not much effort, valid for a PoC or a development cluster. Not for production environments.
+
+If you want to do this manually, without terraform helm provider or helm at all, this annotation should be made in the service account, under `metadata.annotations`, use an official autoscaler image and try match versions with your cluster for better compatibility.
+
+### Coming up next
+
+In my next post I will write about kube2iam, as I am exploring different ways to give permissions within a EKS cluster.
