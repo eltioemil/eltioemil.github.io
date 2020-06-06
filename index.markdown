@@ -3,7 +3,7 @@ layout: index
 title: "index-page"
 ---
 
-### They call me DevOps
+### __They call me DevOps__
 
 I am quite lazy and I tend to forget everything, so, that inevitablely drove me to automation and writing things as code. And that is what I have been doing for about twelve years now. Apparently, I am not the only one, and people like me are called DevOps. But I preffer to say that we are system administrators that embrace DevOps culture.
 
@@ -35,13 +35,13 @@ Oh, I almost forgot, I also have experienced the joys of being [manager](./asset
 
 ### Some companies even payed me for this!
 
-| Where? | When? | What? |
-| ------ | ------ |------ |
-| [Clarivate Analytics](https://clarivate.com/){:target="_blank"}  | Current since May 2020 | I currently work as a platform automation senior DevOps Engineer |
-| [StubHub](https://www.stubhub.com/){:target="_blank"} | May 2018 - May 2020 | I entered as Senior DevOps engineer but I ended up as Junior Manager of a DevOps team. |
-| [BBVA Next](https://www.bbvanexttechnologies.com){:target="_blank"} | Jan 2016 - May 2018 | Cloud DevOps practitioner in several projects within IBEX35 major companies. (Former BEEVA). |
-| [Rentalia](https://www.rentalia.com){:target="_blank"} | July 2013 - Jan 2016 | DevOps with my own Datacenter to play with and physical servers. |
-| [Previously](https://www.ferri.es/){:target="_blank"} | July 2008 - July 2013 | I was IT department manager for 5 years, and a couple years teaching about computers |
+| Where?                                                              | When?                  | What?                                                                                        |
+| ------------------------------------------------------------------- | ---------------------- | -------------------------------------------------------------------------------------------- |
+| [Clarivate Analytics](https://clarivate.com/){:target="_blank"}     | Current since May 2020 | I currently work as a platform automation senior DevOps Engineer                             |
+| [StubHub](https://www.stubhub.com/){:target="_blank"}               | May 2018 - May 2020    | I entered as Senior DevOps engineer but I ended up as Junior Manager of a DevOps team.       |
+| [BBVA Next](https://www.bbvanexttechnologies.com){:target="_blank"} | Jan 2016 - May 2018    | Cloud DevOps practitioner in several projects within IBEX35 major companies. (Former BEEVA). |
+| [Rentalia](https://www.rentalia.com){:target="_blank"}              | July 2013 - Jan 2016   | DevOps with my own Datacenter to play with and physical servers.                             |
+| [Previously](https://www.ferri.es/){:target="_blank"}               | July 2008 - July 2013  | I was IT department manager for 5 years, and a couple years teaching about computers         |
 
 ### Contact with me
 

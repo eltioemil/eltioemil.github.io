@@ -26,6 +26,7 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    text-align: $body-text-align;
   }
 
 
@@ -126,14 +127,14 @@
 
     &:hover {
       color: $grey-color;
-      text-decoration: underline;
+      text-decoration: none;
     }
 
     .social-media-list &:hover {
       text-decoration: none;
 
       .username {
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
   }
