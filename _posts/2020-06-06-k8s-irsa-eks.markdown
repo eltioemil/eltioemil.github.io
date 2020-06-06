@@ -130,7 +130,7 @@ The condition block, in json, would look like:
 }
 ```
 
-In english, what we need is to trust our OIDC that we created before as federated identity when this condition matches. And it is very important that we set the service account for our autoscaler right. If our autoscaler service account is on a namespace called `infrastructure` and our autoscaler service account is called, in an outstanding effort to name things in a cool way, `autoscaler-service-account`; the string will be `system:serviceaccount:infrastructure:autoscaler-service-account`.
+Writing this on human words, what we need is to trust our OIDC that we created before as federated identity when this condition matches. And it is very important that we set the service account for our autoscaler right. If our autoscaler service account is on a namespace called `infrastructure` and our autoscaler service account is called, in an outstanding effort to name things in a cool way, `autoscaler-service-account`; the string will be `system:serviceaccount:infrastructure:autoscaler-service-account`.
 
 This might seem obvious but in many, many documentations there was this copy/pasted example that used names that didn't make clear that what we need to relate here is the actual service account of some service in our cluster. As they used generic names, this might get confusing sometimes. So I wanted to explain this really carefully.
 
