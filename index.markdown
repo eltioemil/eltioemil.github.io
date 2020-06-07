@@ -3,7 +3,7 @@ layout: index
 title: "index-page"
 ---
 
-### __They call me DevOps__
+### They call me DevOps
 
 I am quite lazy and I tend to forget everything, so, that inevitablely drove me to automation and writing things as code. And that is what I have been doing for about twelve years now. Apparently, I am not the only one, and people like me are called DevOps. But I preffer to say that we are system administrators that embrace DevOps culture.
 
