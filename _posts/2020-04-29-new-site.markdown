@@ -1,34 +1,38 @@
 ---
 layout: post
-title:  "New site"
-date:   2020-04-29 16:19:00 +0200
+title: "New site"
+date: 2020-04-29 16:19:00 +0200
 categories: jekyll
 ---
 
-This is my first site using [Jekyll](https://jekyllrb.com/){:target="_blank"}, I switched from the old wordpress site hosted elsewhere to Github Pages.
+This is my first site using [Jekyll](https://jekyllrb.com/){:target="\_blank"}, I switched from the old wordpress site hosted elsewhere to Github Pages.
 
-This site is based on [minima theme](https://github.com/jekyll/minima){:target="_blank"}, but overrided tiny details as a start.
+This site is based on [minima theme](https://github.com/jekyll/minima){:target="\_blank"}, but overrided tiny details as a start.
 
 I changed the typography and added a small javascript code to make the header sticky. Also added a progress bar on top of the sticky header too, simple enough:
 
 ```js
-window.onscroll = function () { stickyHeaderProgress() };
+window.onscroll = function () {
+  stickyHeaderProgress();
+};
 
-var header = document.getElementById("site-header")
+var header = document.getElementById("site-header");
 var sticky = header.offsetTop;
 
 function stickyHeaderProgress() {
-    if (window.pageYOffset > sticky) {
+  if (window.pageYOffset > sticky) {
     header.classList.add("sticky");
-    } else {
+  } else {
     header.classList.remove("sticky");
-    }
+  }
 
-    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var scrolled = (winScroll / height) * 100;
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
 
-    document.getElementById("theProgressBar").style.width = scrolled + "%";
+  document.getElementById("theProgressBar").style.width = scrolled + "%";
 }
 ```
 
@@ -42,7 +46,7 @@ And the css:
 .sticky {
   position: fixed;
   top: 0;
-  width: 100%
+  width: 100%;
 }
 
 .sticky + .page-content {
