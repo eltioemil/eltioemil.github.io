@@ -14,32 +14,22 @@ function stickyHeaderProgress() {
     var height = document.documentElement.scrollHeight - window.innerHeight;
     var scrolled = (winScroll / height) * 100;
 
-    document.getElementById("theProgressBar").style.width = scrolled + "%";
+    document.getElementById("progress-bar").style.width = scrolled + "%";
 
-    // Shrink header when scrolling down. Not the best way of doint this for sure.
+    // Used class replacement instead of changing each element, which is a bit better, I guess...
     if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
-        document.getElementById("site-title").style.lineHeight = "34px";
-        document.getElementById("site-title").style.height = "30px";
-        document.getElementById("site-title").style.fontSize = "18.25px";
-        document.getElementById("site-title").style.transition = "all 0.5s";
-        document.getElementById("logo").style.height = "22px";
-        document.getElementById("logo").style.transition = "all 0.5s";
-        document.getElementById("site-nav").style.lineHeight = "34px";
-        document.getElementById("site-nav").style.transition = "all 0.5s";
-        document.getElementById("site-header").style.minHeight = "38px";
-        document.getElementById("site-header").style.transition = "all 0.5s";
-        document.getElementById("progress-container").style.height = "2px";
-        document.getElementById("progress-container").style.transition = "all 0.2s";
-        document.getElementById("theProgressBar").style.height = "2px";
-        document.getElementById("theProgressBar").style.transition = "all 0.2s";
+        document.getElementById("site-header").classList.replace("site-header", "site-header-sm");
+        document.getElementById("site-title").classList.replace("site-title", "site-title-sm");
+        document.getElementById("logo").classList.replace("logo", "logo-sm");
+        document.getElementById("site-nav").classList.replace("site-nav", "site-nav-sm");
+        document.getElementById("progress-container").classList.replace("progress-container", "progress-container-sm");
+        document.getElementById("progress-bar").classList.replace("progress-bar", "progress-bar-sm");
     } else {
-        document.getElementById("site-title").style.lineHeight = "60.75px";
-        document.getElementById("site-title").style.height = "60.75px";
-        document.getElementById("site-title").style.fontSize = "29.25px";
-        document.getElementById("logo").style.height = "35px";
-        document.getElementById("site-nav").style.lineHeight = "60.75px";
-        document.getElementById("site-header").style.minHeight = "56px";
-        document.getElementById("progress-container").style.height = "5px";
-        document.getElementById("theProgressBar").style.height = "5px";
+        document.getElementById("site-header").classList.replace("site-header-sm", "site-header");
+        document.getElementById("site-title").classList.replace("site-title-sm", "site-title");
+        document.getElementById("logo").classList.replace("logo-sm", "logo");
+        document.getElementById("site-nav").classList.replace("site-nav-sm", "site-nav");
+        document.getElementById("progress-container").classList.replace("progress-container-sm", "progress-container");
+        document.getElementById("progress-bar").classList.replace("progress-bar-sm", "progress-bar");
     }
 }
