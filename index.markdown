@@ -32,7 +32,7 @@ And everything else:
 
 I didn't mention [k8s](https://kubernetes.io/){:target="_blank"}, [Docker](https://www.docker.com/){:target="_blank"} or [Helm](https://helm.sh/){:target="_blank"}. But that was on purpose. Wait...
 
-This list has gone way too large again, is not possible to shrink it... If you are curious, just ask me, I am on [linkedin](https://www.linkedin.com/in/eltioemil){:target="_blank"}.
+This list has gone way too large again, is not possible to shrink it... If you are curious, just ask me, I am on [linkedin](https://www.linkedin.com/in/emiliourena){:target="_blank"}.
 
 Oh, I almost forgot, I also have experienced the joys of being [manager](./assets/Douglas_Reynholm.jpg){:target="_blank"} and tech lead.
 
