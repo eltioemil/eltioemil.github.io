@@ -2,20 +2,20 @@
  * Site header
  */
 .site-header {
-  border-bottom: 2px solid $grey-color-light;
   min-height: $spacing-unit * 1.865;
   background-color: $background-color;
   transition: all 0.5s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.16), 0 2px 8px rgba(0,0,0,0.23);
 
   // Positioning context for the mobile navigation icon
   position: relative;
 }
 
 .site-header-sm {
-  border-bottom: 2px solid $grey-color-light;
   min-height: $spacing-unit * 1.5;
   background-color: $background-color;
   transition: all 0.5s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.16), 0 2px 8px rgba(0,0,0,0.23);
 
   // Positioning context for the mobile navigation icon
   position: relative;
