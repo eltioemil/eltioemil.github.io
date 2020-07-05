@@ -1,8 +1,9 @@
 ---
+title: New site
 layout: post
-title: "New site"
-date: 2020-04-29 16:19:00 +0200
-categories: jekyll
+date: '2020-04-29 16:19:00 +0200'
+categories:
+- jekyll
 ---
 
 This is my first site using [Jekyll](https://jekyllrb.com/){:target="_blank"}, I switched from the old wordpress site hosted elsewhere to Github Pages.

@@ -5,11 +5,11 @@ title: "index-page"
 
 ### They call me DevOps
 
-I am quite lazy and I tend to forget everything, so, that inevitablely drove me to automation and writing things as code. And that is what I have been doing for about twelve years now. Apparently, I am not the only one, and people like me are called DevOps. But I preffer to say that we are system administrators that embrace DevOps culture.
+I am quite lazy and I tend to forget everything, so, that inevitably drove me to automation and writing things as code. And that is what I have been doing for about twelve years now. Apparently, I am not the only one, and people like me are called DevOps. But I prefer to say that we are system administrators that embrace DevOps culture.
 
 ### Moar Tech!
 
-On previous versions of this website, I had this fancy list of technologies I have used enough to be able to say I knew them. The list keept growing as technology and necessity did and it became way too large. So I just decided to stop this suffering today.
+On previous versions of this website, I had this fancy list of technologies I have used enough to be able to say I knew them. The list kept growing as technology and necessity did and it became way too large. So I just decided to stop this suffering today.
 
 Lately I have been mostly working on Cloud, but I have seen places in my past, even Datacenters:
 
@@ -20,7 +20,7 @@ My first contact with infrastructure as code was [Cloudformation](https://aws.am
 
 And yes, I know a couple things about config management:
 
-- [Ansible](https://www.ansible.com/){:target="_blank"} and it's idempotencies.
+- [Ansible](https://www.ansible.com/){:target="_blank"} and it's idempotences.
 - [Puppet](https://puppet.com/){:target="_blank"}, we all had a first love, right?
 
 And everything else:

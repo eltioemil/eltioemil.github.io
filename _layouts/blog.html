@@ -2,6 +2,30 @@
 layout: default
 ---
 
+{%- if site.enable_search -%}
+<div class="search__container" id="search__container">
+  <input type="text" class="search__input" id="search__input" placeholder="Search blog posts...">
+</div>
+
+<div class="search__results" id="search__results">
+  <ul id="search__results-container"></ul>
+</div>
+
+<script src="{{ "/" | relative_url }}js/simple-jekyll-search.js"></script>
+
+<script>
+  var sjs = SimpleJekyllSearch({
+    searchInput: document.getElementById('search__container'),
+    resultsContainer: document.getElementById('search__results-container'),
+    json: '{{ "/" | relative_url }}search.json',
+    searchTitle: '<div class="search__title">Search results:</div>',
+    searchResultTemplate: '<li><a href="{{ site.url }}{url}">{title}</a></li>',
+    searchSeparator: '<div class="divider-wrapper"><div class="divider div-transparent div-arrow-down"></div></div>',
+    fuzzy: true
+  })
+</script>
+{%- endif -%}
+
 <div class="home">
   {{ content }} {%- if site.posts.size > 0 -%}
   <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
@@ -27,6 +51,5 @@ layout: default
     </li>
     {%- endfor -%}
   </ul>
-
   {%- endif -%}
 </div>

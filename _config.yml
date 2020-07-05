@@ -1,5 +1,6 @@
 title: "El tío Emil"
 show_excerpts: true
+enable_search: true
 description: >-
   These are not the droids you were looking for.
 baseurl: ""
