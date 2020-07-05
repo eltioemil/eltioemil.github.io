@@ -4,6 +4,8 @@ layout: post
 date: '2020-04-29 16:19:00 +0200'
 categories:
 - jekyll
+- javascript
+- scss
 ---
 
 This is my first site using [Jekyll](https://jekyllrb.com/){:target="_blank"}, I switched from the old wordpress site hosted elsewhere to Github Pages.
@@ -71,7 +73,7 @@ And that is pretty much it for a first post.
 
 Cheers!
 
-### Edited
+### Edit
 
 There was an issue with the javascript code in chrome mobile browser. As you might know, Chrome for mobile hides the address bar on scroll down, so, to avoid that offset on scrolling, I used window.innerHeight instead of clientHeight on documentElement. This might be basic for frontend developers, but for me is something I just discovered now, LOL:
 
@@ -82,3 +84,35 @@ var scrolled = (winScroll / height) * 100;
 
 document.getElementById("theProgressBar").style.width = scrolled + "%";
 ```
+
+### Edit 2
+
+This template was supposed to be a simple one, but I have been adding some changes both visual and functional. Honestly, I enjoyed learning a bit more about Jekyll and Javascript, even though I just did tiny things, babysteps comparing with a pro frontender.
+
+One of the things I wanted to do was to create an animation to shrink the header when scrolling down to avoid that the header was too visible for the reader. So, I did some ugly first version of that by just overriding styles with `JS` funtions. Then, I made what I believe is a better approach that was this:
+
+```js
+    if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+        document.getElementById("site-header").classList.replace("site-header", "site-header-sm");
+        document.getElementById("site-title").classList.replace("site-title", "site-title-sm");
+        document.getElementById("logo").classList.replace("logo", "logo-sm");
+        document.getElementById("site-nav").classList.replace("site-nav", "site-nav-sm");
+        document.getElementById("progress-container").classList.replace("progress-container", "progress-container-sm");
+        document.getElementById("progress-bar").classList.replace("progress-bar", "progress-bar-sm");
+    } else {
+        document.getElementById("site-header").classList.replace("site-header-sm", "site-header");
+        document.getElementById("site-title").classList.replace("site-title-sm", "site-title");
+        document.getElementById("logo").classList.replace("logo-sm", "logo");
+        document.getElementById("site-nav").classList.replace("site-nav-sm", "site-nav");
+        document.getElementById("progress-container").classList.replace("progress-container-sm", "progress-container");
+        document.getElementById("progress-bar").classList.replace("progress-bar-sm", "progress-bar");
+    }
+```
+
+But, again, honestly; I don't think this is a good way for doing this and I would love if someone who really knows about this can tell me how is this done the right way.
+
+I also added simple search functionality with jekyll simple search, but I modified `simple-jekyll-search.js` a bit to suit my needs. I added both a `title` and a `separator` parameters to add some custom code in there. And I used examples from `Codepen` like [this one](https://codepen.io/Oddgson/pen/VPrYbv){:target="_blank"} to create a style that matches the rest of my blog somehow, I am no designer, I think that is pretty obvious.
+
+I also added a `scroll to top` button, some shadows and tiny color modifications here and there and I pretty much thing that I will not be changing anything else for a while.
+
+Jekyll is pretty cool, and I really like how simple it is to create a custom website/blog with no huge coding skills required.
