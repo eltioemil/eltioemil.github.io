@@ -11,6 +11,7 @@ linkedin_username: emiliourena
 # Build settings
 # This theme overrides minima theme
 theme: minima
+permalink: /:title.html
 
 plugins:
   - jekyll-feed
