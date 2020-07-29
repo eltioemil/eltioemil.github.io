@@ -37,6 +37,3 @@ paginate:       10
 
 # Excludes
 exclude: [ Gemfile, Gemfile.lock, emil.gemspec ]
-
-# Disqus (Set to your disqus id)
-disqus: emiliourea
