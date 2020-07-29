@@ -8,6 +8,7 @@ categories:
 - aws
 - terraform
 - iam
+comments: true
 ---
 
 For the last couple of weeks I've been setting up kubernetes with AWS EKS service with terraform provider. So I wanted to take this opportunity to start digging around and really learn how EKS works and see what these AWS folks built on top of kubernetes. That is why I wanted to start this series of posts called _EKS for humans_ where I would try to explain things that, at this point today, are not so widely documented or, from my point of view not so clear. Things that, after struggling with them to figure out how they work I realized that I would loved to have a single post that compiled all the pieces in the most clear way possible. I know this may be ambitious, but I will write them as if they were for my own personal use. Don't expect the Shakespeare of DevOps engineering here, folks.

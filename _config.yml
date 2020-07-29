@@ -1,30 +1,42 @@
-title: "El tío Emil"
-show_excerpts: true
-enable_search: true
-description: >-
-  These are not the droids you were looking for.
-baseurl: ""
-url: "https://www.eltioemil.es"
-github_username:  eltioemil
-linkedin_username: emiliourena
+# Site settings
+title:          Emil
+description:    "Emil's site"
+baseurl:        ""
+url:            ""
+
+# Google Analytics
+google_analytics: UA—48320717-1
+
+# Author
+author:
+  name:         El tío Emil
+  url:          https://eltioemil.es
+  email:        nope@nope.es
 
 # Build settings
-# This theme overrides minima theme
-theme: minima
-permalink: /:title.html
+markdown: kramdown
+include:
+  - _pages
 
+# Assets
+sass:
+  sass_dir:     _sass
+  style:        compressed
+
+# Gems
 plugins:
   - jekyll-feed
+  - jekyll-paginate
   - jekyll-seo-tag
+  - jemoji
+  - jekyll-admin
 
-exclude:
-  - .sass-cache/
-  - .jekyll-cache/
-  - gemfiles/
-  - Gemfile
-  - Gemfile.lock
-  - node_modules/
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
+# Permalinks
+permalink:      /:year-:month-:day/:title
+paginate:       10
+
+# Excludes
+exclude: [ Gemfile, Gemfile.lock, emil.gemspec ]
+
+# Disqus (Set to your disqus id)
+disqus: emiliourea

@@ -8,6 +8,7 @@ categories:
 - aws
 - terraform
 - kube2iam
+comments: true
 ---
 
 In the last entry on this blog I wrote about giving permissions to k8s service accounts with IRSA and OIDC in EKS clusters. But, before that method was available, there was (and still is) a repository called [`kube2iam`](https://github.com/jtblin/kube2iam){:target="_blank"} created by Jerome Touffe-Blin, which allowed to use IAM roles to give permissions to our deployments, PODs, replicasets, etc.

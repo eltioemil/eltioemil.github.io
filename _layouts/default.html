@@ -1,25 +1,17 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="en">
 
-{%- include head.html -%}
+  {% include head.html %}
 
-<body>
+  <body>
 
-  {%- include header.html -%}
+    {% include navigation.html %}
 
-  <main class="page-content" aria-label="Content">
-    <div class="wrapper">
+    <main>
       {{ content }}
-    </div>
-  </main>
+    </main>
 
-  {%- include footer.html -%}
-
-  <a href="#" id="scroll" style="display: none;"><span></span></a>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="{{ "/" | relative_url }}js/header.js"></script>
-  <script src="{{ "/" | relative_url }}js/back-to-top.js"></script>
-</body>
-
+    {% include footer.html %}
+    <script src="{{ "/assets/js/header.js" | relative_url }}"></script>
+  </body>
 </html>
