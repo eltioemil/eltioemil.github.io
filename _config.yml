@@ -4,9 +4,6 @@ description:    "Emil's site"
 baseurl:        ""
 url:            ""
 
-# Google Analytics
-google_analytics: UA—48320717-3
-
 # Author
 author:
   name:         El tío Emil
