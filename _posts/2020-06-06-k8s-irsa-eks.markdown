@@ -1,5 +1,5 @@
 ---
-title: 'EKS for humans 1: IRSA in EKS or how to link Service Accounts with IAM roles'
+title: 'Playing with EKS 1: IRSA in EKS or how to link Service Accounts with IAM roles'
 layout: post
 date: '2020-06-06 10:00:00 +0200'
 categories:
@@ -11,17 +11,17 @@ categories:
 comments: true
 ---
 
-For the last couple of weeks I've been setting up kubernetes with AWS EKS service with terraform provider. So I wanted to take this opportunity to start digging around and really learn how EKS works and see what these AWS folks built on top of kubernetes. That is why I wanted to start this series of posts called _EKS for humans_ where I would try to explain things that, at this point today, are not so widely documented or, from my point of view not so clear. Things that, after struggling with them to figure out how they work I realized that I would loved to have a single post that compiled all the pieces in the most clear way possible. I know this may be ambitious, but I will write them as if they were for my own personal use. Don't expect the Shakespeare of DevOps engineering here, folks.
+For the last couple of weeks I've been setting up kubernetes with AWS EKS service with terraform provider. So I wanted to take this opportunity to start digging around and really learn how EKS works and see what these AWS folks built on top of kubernetes. That is why I wanted to start this series of posts called _Playing with EKS_ where I would try to explain things that, at this point today, are not so widely documented or, from my point of view not so clear. Things that, after struggling with them to figure out how they work I realized that I would loved to have a single post that compiled all the pieces in the most clear way possible. I know this may be ambitious, but I will write them as if they were for my own personal use. Don't expect the Shakespeare of DevOps engineering here, folks.
 
 ### __What is IRSA__
 
 Well, as you can google this to find more information about it, in a nutshell, `IRSA` stands for IAM Roles for Service Accounts. Meaning that is a mechanism to attach an IAM role to a kubernetes service account and manage privileges through IAM roles and policies instead of using RBAC. I am not going to go through why someone would like to use this instead of RBAC, this is not the post for that. But, assuming we want to use it, let's see how to do that.
 
-If you need more information, just let me google it for you: [What is EKS `IRSA`?](https://lmgtfy.com/?q=what+is+EKS+`IRSA`&pp=1){:target="_blank"}
+If you need more information, just let me google it for you: [`What is EKS IRSA`?](https://lmgtfy.com/?q=what+is+EKS+`IRSA`&pp=1){:target="_blank"}
 
 ### __First piece of the puzzle, OpenID provider__
 
-EKS makes use of [OpenID connect](https://openid.net/connect/){:target="_blank"} to stablish trust. Like I mentioned, in my case I was using terraform in order to automate infrastructure deployment, so I will use it for the code examples. If you create this manually it will be way easier as AWS Console (or cli) would do some steps automatically for you. But, if you want to use terraform, you will have to perform an extra step. I will explain that below, but this is basically how we create an OIDC (out of OpenID connector) in AWS with terraform (assuming we already created our EKS cluster called 'eks'):
+EKS makes use of [`OpenID connect`](https://openid.net/connect/){:target="_blank"} to stablish trust. Like I mentioned, in my case I was using terraform in order to automate infrastructure deployment, so I will use it for the code examples. If you create this manually it will be way easier as AWS Console (or cli) would do some steps automatically for you. But, if you want to use terraform, you will have to perform an extra step. I will explain that below, but this is basically how we create an OIDC (out of OpenID connector) in AWS with terraform (assuming we already created our EKS cluster called 'eks'):
 
 ```sh
 resource "aws_iam_openid_connect_provider" "eks_openid_provider" {
@@ -31,7 +31,7 @@ resource "aws_iam_openid_connect_provider" "eks_openid_provider" {
 }
 ```
 
-Like I have mentioned before, if you create this with AWS console, it will populate thumbprint_list automatically, but, as we are going to do it though terraform we will have to create it ourselves. Basically the thumbprint is obtained from the CA root certificate from oidc.eks.[YOUR_AWS_REGION].amazonaws.com then we get the fingerprint from it and remove colon characters (:) from it, and that is the value we need to insert in the resource in json format like this:
+Like I have mentioned before, if you create this with AWS console, it will populate thumbprint_list automatically, but, as we are going to do it though terraform we will have to create it ourselves. Basically the thumbprint is obtained from the CA root certificate from `oidc.eks.[YOUR_AWS_REGION].amazonaws.com` then we get the fingerprint from it and remove colon characters (:) from it, and that is the value we need to insert in the resource in json format like this:
 
 ```sh
 "{"thumbprint": "990F4193972F2BECF12DDEDA5237F9C952F20D9E"}"
@@ -152,7 +152,7 @@ And that's it, we now have a IAM role that can use our OIDC to obtain trust in o
 
 Actually, we already did this. As we specified our relationship with the service account, in our example, `autoscaler-service-account` in our role. What it's left to do is to use it in our deployment, replicaset, pod, etc.
 
-In my case I was going full terraform, so I used helm terraform provider in order to create a helm release through terrafom using the stable official Cluster Autoscaler helm chart. If you do this, is quite easy to configure, [the chart is ready for using `IRSA`](https://github.com/helm/charts/tree/master/stable/cluster-autoscaler#iam-roles-for-service-accounts-irsa){:target="_blank"} so you only need to pass an annotation in the service account annotations.
+In my case I was going full terraform, so I used helm terraform provider in order to create a helm release through terrafom using the stable official Cluster Autoscaler helm chart. If you do this, is quite easy to configure, [`the chart is ready for using IRSA`](https://github.com/helm/charts/tree/master/stable/cluster-autoscaler#iam-roles-for-service-accounts-irsa){:target="_blank"} so you only need to pass an annotation in the service account annotations.
 
 This, translated into terraform helm provider, becomes a set. And, this is what nobody explains, you need to scape special characters in order to make it work:
 

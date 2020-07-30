@@ -14,8 +14,7 @@ footer,
 }
 
 .nav {
-  // box-shadow: 0 2px 2px -2px $shadow-color;
-  box-shadow: 0 2px 6px $shadow-color, 0 2px 6px $shadow-color-2;
+  box-shadow: 0 2px 3px $shadow-color, 0 2px 2px $shadow-color-2;
   overflow: auto;
   background-color: $white;
 
@@ -66,6 +65,15 @@ footer,
     color: $default-color;
     font-family: $sans-serif;
   }
+
+  &-shrink {
+    font-size: 0.75em;
+  }
+
+  &-shrink .nav-container {
+    margin: 0.6rem auto;
+    position: relative;
+  }
 }
 
 @media (min-width: 600px) {
@@ -79,6 +87,14 @@ footer,
       position: absolute;
       right: 0;
     }
+  }
+
+  .nav.nav-shrink {
+    font-size: 0.75em;
+  }
+
+  .nav.nav-shrink .nav-container {
+    margin: 0.7rem auto;  
   }
 }
 

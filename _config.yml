@@ -5,7 +5,7 @@ baseurl:        ""
 url:            ""
 
 # Google Analytics
-google_analytics: UA—48320717-1
+google_analytics: UA—48320717-3
 
 # Author
 author:
@@ -30,6 +30,7 @@ plugins:
   - jekyll-seo-tag
   - jemoji
   - jekyll-admin
+  - jekyll-sitemap
 
 # Permalinks
 permalink:      /:year-:month-:day/:title

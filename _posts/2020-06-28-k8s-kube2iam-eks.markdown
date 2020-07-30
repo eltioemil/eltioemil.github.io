@@ -1,5 +1,5 @@
 ---
-title: 'EKS for humans 2: Kube2iam on EKS'
+title: 'Playing with EKS 2: Kube2iam on EKS'
 layout: post
 date: '2020-06-28 18:00:00 +0200'
 categories:
@@ -15,7 +15,7 @@ In the last entry on this blog I wrote about giving permissions to k8s service a
 
 Long story short, what I do (and I will explain further) is to allow worker IAM role to assume whatever the role I need (with some restrictions). Then, I pass this role to the PODs through annotations. And this will let the node where the PODs are running to assume permissions to achieve what the POD needs.
 
-Obviously, this only makes sense when you try to get, create or destroy AWS resources from your PODs (or Jobs), for instance, [Kubernetes Cluster Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler){:target="_blank"} will need permissions in order to change ASG values from within a POD in order to achieve scale up or down. This is a common example on how `kube2iam` is used and I will use it for this post, also is the same that I used in the other post so I will be able to see how different they are.
+Obviously, this only makes sense when you try to get, create or destroy AWS resources from your PODs (or Jobs), for instance, [`Kubernetes Cluster Autoscaler`](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler){:target="_blank"} will need permissions in order to change ASG values from within a POD in order to achieve scale up or down. This is a common example on how `kube2iam` is used and I will use it for this post, also is the same that I used in the other post so I will be able to see how different they are.
 
 ### __TL;DR__
 
@@ -155,7 +155,7 @@ What we did here is to create an IAM role that can be assumed by our worker node
 
 #### __Last but not least__
 
-The only missing step is to grant our PODs permission to use this IAM role. I used helm provider for kubernetes to deploy Cluster Autoscaler, like we mentioned in the [previous post](https://www.eltioemil.es/kubernetes/2020/06/06/k8s-irsa-eks.html){:target="_blank"}. So, following that, what we need to do is to create an annotation in our PODs definition, or, in my case, to the deployment template through a helm chart, this is a basic example:
+The only missing step is to grant our PODs permission to use this IAM role. I used helm provider for kubernetes to deploy Cluster Autoscaler, like we mentioned in the [`previous post`](k8s-kube2iam-eks.html){:target="_blank"}. So, following that, what we need to do is to create an annotation in our PODs definition, or, in my case, to the deployment template through a helm chart, this is a basic example:
 
 ```sh
 resource "helm_release" "cluster_autoscaler" {
