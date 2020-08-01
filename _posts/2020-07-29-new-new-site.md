@@ -17,3 +17,7 @@ At this point I don't know if anyone reads me or I am just writing to me, but, t
 I found this cool codepen for the scroll thingy on the right of the page, I adapted it a bit but not much, credit: [`https://codepen.io/Askwithloud/pen/yNxQvm`](https://codepen.io/Askwithloud/pen/yNxQvm){:target="_blank"}
 
 Also I added header shrink on scroll to reduce header ocupation on top of the page.
+
+#### Edit 2:
+
+I also added `Simple Jekyll Search`, to the site. Credit: [`https://github.com/christian-fei/Simple-Jekyll-Search`](https://github.com/christian-fei/Simple-Jekyll-Search){:target="_blank"}.
