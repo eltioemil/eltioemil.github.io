@@ -3,6 +3,7 @@ title:          Emil
 description:    "Emil's site"
 baseurl:        ""
 url:            ""
+enable_search:  true
 
 # Author
 author:
