@@ -27,7 +27,6 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
   - jemoji
-  - jekyll-admin
   - jekyll-sitemap
 
 # Permalinks
