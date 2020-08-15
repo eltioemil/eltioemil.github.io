@@ -2,30 +2,37 @@
 layout: default
 ---
 
-<div class="catalogue">
-  {% for post in paginator.posts %}
+<div class="button-group filter-button-group">
+  <h1 class="category-title">Browse categories</h1>
+  {% for category in site.categories %}
+  <a class="button" data-filter=".{{ category | first }}">{{ category | first }}</a>
+  {% endfor %}
+  <a class="button active" data-filter="*">All</a>
+</div>
+
+<div class="grid catalogue">
+  {% for post in site.posts %}
+  <div class="element-item {{ post.category }}">
+
     <a href="{{ post.url | prepend: site.baseurl }}" class="catalogue-item">
-      <div>
-        <time datetime="{{ post.date }}" class="catalogue-time">{{ post.date | date: "%B %d, %Y" }}</time>
-        <h1 class="catalogue-title">{{ post.title }}</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-          {{ post.content | strip_html | truncatewords: 45 }}
-        </p>
-
-      </div>
+      <time datetime="{{ post.date }}" class="catalogue-time">{{ post.date | date: "%B %d, %Y" }}</time>
+      <h1 class="catalogue-title">{{ post.title }}</h1>
+      <div class="catalogue-line"></div>
+      <p>
+        {{ post.content | strip_html | truncatewords: 60 }}
+      </p>
     </a>
+  </div>
   {% endfor %}
 </div>
 
 <div class="pagination">
-  {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="left arrow">&#8592;</a>
-  {% endif %}
-  {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="right arrow">&#8594;</a>
-  {% endif %}
-
-  <span>{{ paginator.page }}</span>
+  <a href="#" id="scroll" class="top">Top</a>
 </div>
+
+
+<script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+  crossorigin="anonymous"></script>
+<script src="https://unpkg.com/isotope-layout@3.0/dist/isotope.pkgd.js"></script>
+<script src="{{ "/assets/js/grid.js" | relative_url }}"></script>
+<script src="{{ "/assets/js/back-to-top.js" | relative_url }}"></script>

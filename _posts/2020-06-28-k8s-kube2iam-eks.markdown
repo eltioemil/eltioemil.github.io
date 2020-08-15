@@ -1,23 +1,19 @@
 ---
-title: 'Playing with EKS 2: Kube2iam on EKS'
+title: "Playing with EKS 2: Kube2iam on EKS"
 layout: post
-date: '2020-06-28 18:00:00 +0200'
-categories:
-- kubernetes
-- eks
-- aws
-- terraform
-- kube2iam
+date: "2020-06-28 18:00:00 +0200"
+category:
+  - kubernetes
 comments: true
 ---
 
-In the last entry on this blog I wrote about giving permissions to k8s service accounts with IRSA and OIDC in EKS clusters. But, before that method was available, there was (and still is) a repository called [`kube2iam`](https://github.com/jtblin/kube2iam){:target="_blank"} created by Jerome Touffe-Blin, which allowed to use IAM roles to give permissions to our deployments, PODs, replicasets, etc.
+In the last entry on this blog I wrote about giving permissions to k8s service accounts with IRSA and OIDC in EKS clusters. But, before that method was available, there was (and still is) a repository called [`kube2iam`](https://github.com/jtblin/kube2iam){:target="\_blank"} created by Jerome Touffe-Blin, which allowed to use IAM roles to give permissions to our deployments, PODs, replicasets, etc.
 
 Long story short, what I do (and I will explain further) is to allow worker IAM role to assume whatever the role I need (with some restrictions). Then, I pass this role to the PODs through annotations. And this will let the node where the PODs are running to assume permissions to achieve what the POD needs.
 
-Obviously, this only makes sense when you try to get, create or destroy AWS resources from your PODs (or Jobs), for instance, [`Kubernetes Cluster Autoscaler`](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler){:target="_blank"} will need permissions in order to change ASG values from within a POD in order to achieve scale up or down. This is a common example on how `kube2iam` is used and I will use it for this post, also is the same that I used in the other post so I will be able to see how different they are.
+Obviously, this only makes sense when you try to get, create or destroy AWS resources from your PODs (or Jobs), for instance, [`Kubernetes Cluster Autoscaler`](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler){:target="\_blank"} will need permissions in order to change ASG values from within a POD in order to achieve scale up or down. This is a common example on how `kube2iam` is used and I will use it for this post, also is the same that I used in the other post so I will be able to see how different they are.
 
-### __TL;DR__
+### **TL;DR**
 
 Basically what I do is:
 
@@ -26,15 +22,15 @@ Basically what I do is:
 - Create a role with the permissions that I need my PODs to have, and add a trust policy that allows assume role to workers IAM role ARN's.
 - Pass the role to our POD's, deployments, etc through annotations.
 
-### __How we do this__
+### **How we do this**
 
 In the last post, I used terraform for all the examples, so I will do the same here:
 
-#### __Create a very dangerous policy__
+#### **Create a very dangerous policy**
 
 We need to allow workers to assume whatever roles we create in the future for working with `kube2iam`. We can simply create this policy and attach it to the workers IAM role, but I would strongly not recommend doing this:
 
-> ⚠ __Do not just copy paste without reading, please.__
+> ⚠ **Do not just copy paste without reading, please.**
 
 ```sh
 data "aws_iam_policy_document" "cluster_kube2iam_document" {
@@ -50,7 +46,8 @@ data "aws_iam_policy_document" "cluster_kube2iam_document" {
 
 The policy above, will work, but, our worker nodes will be able to assume any role. In the scenario that our kubernetes cluster gets compromised, an attacker will be able to use our worker nodes to assume any role in our AWS account, and that includes giving admin privileges to whatever the attacker wants. Including; yes, you guessed it, the attacker.
 
-So I suggest to be really careful with this and make sure about two things: 
+So I suggest to be really careful with this and make sure about two things:
+
 - One, our worker IAM roles have the strictly necessary privileges to run our cluster.
 - Two, we create a role prefix or a custom path or both so we make sure we can only assume the roles we want and not every role in the account. An example for this would be:
 
@@ -70,7 +67,7 @@ data "aws_iam_policy_document" "cluster_kube2iam_document" {
 
 This way, it will only be able to assume the roles that match this "filter" and we will create the roles we want to use with kube2iam following that structure. But, still, be careful with this.
 
-#### __Attach the policy to the workers role__
+#### **Attach the policy to the workers role**
 
 Now we have our policy, we just attach it to the worker role. If, for any reason, we need to run a POD in the masters that needs to use `kube2iam`, we will attach this policy to our master IAM role too. An example would be:
 
@@ -89,7 +86,7 @@ resource "aws_iam_role_policy_attachment" "cluster_kube2iam_attach" {
 
 Now, our worker nodes can assume any roles that match our pattern.
 
-#### __Create the role that will be assumed by the worker nodes__
+#### **Create the role that will be assumed by the worker nodes**
 
 Now we create a IAM role that will trust our worker nodes:
 
@@ -153,9 +150,9 @@ resource "aws_iam_role_policy_attachment" "cluster_autoscaler_attachment" {
 
 What we did here is to create an IAM role that can be assumed by our worker nodes that is allowed to read any information related with the ASG's in the account, and can modify capacity of our workers ASG. We limited functionality to the minimum possible for security reasons.
 
-#### __Last but not least__
+#### **Last but not least**
 
-The only missing step is to grant our PODs permission to use this IAM role. I used helm provider for kubernetes to deploy Cluster Autoscaler, like we mentioned in the [`previous post`](k8s-kube2iam-eks.html){:target="_blank"}. So, following that, what we need to do is to create an annotation in our PODs definition, or, in my case, to the deployment template through a helm chart, this is a basic example:
+The only missing step is to grant our PODs permission to use this IAM role. I used helm provider for kubernetes to deploy Cluster Autoscaler, like we mentioned in the [`previous post`](k8s-kube2iam-eks.html){:target="\_blank"}. So, following that, what we need to do is to create an annotation in our PODs definition, or, in my case, to the deployment template through a helm chart, this is a basic example:
 
 ```sh
 resource "helm_release" "cluster_autoscaler" {
@@ -211,6 +208,6 @@ resource "helm_release" "cluster_autoscaler" {
 
 And that is pretty much it. Our CA will be able to control our worker's ASG size.
 
-### __Coming up next__
+### **Coming up next**
 
 I'm not completely sure, but I would probably write about Pod Security Policies on my next post. I will write about how they work, patterns and best practices.

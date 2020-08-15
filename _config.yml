@@ -1,15 +1,15 @@
 # Site settings
-title:          Emil
-description:    "Emil's site"
-baseurl:        ""
-url:            ""
-enable_search:  true
+title: Emil
+description: "Emil's site"
+baseurl: ""
+url: ""
+enable_search: true
 
 # Author
 author:
-  name:         El tío Emil
-  url:          https://eltioemil.es
-  email:        nope@nope.es
+  name: El tío Emil
+  url: https://eltioemil.es
+  email: nope@nope.es
 
 # Build settings
 markdown: kramdown
@@ -18,8 +18,8 @@ include:
 
 # Assets
 sass:
-  sass_dir:     _sass
-  style:        compressed
+  sass_dir: _sass
+  style: compressed
 
 # Gems
 plugins:
@@ -30,8 +30,8 @@ plugins:
   - jekyll-sitemap
 
 # Permalinks
-permalink:      /:year-:month-:day/:title
-paginate:       10
+permalink: /:year-:month-:day/:title
+paginate: 10
 
 # Excludes
-exclude: [ Gemfile, Gemfile.lock, emil.gemspec ]
+exclude: [Gemfile, Gemfile.lock, emil.gemspec]

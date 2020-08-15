@@ -1,17 +1,15 @@
 ---
 title: New site
 layout: post
-date: '2020-04-29 16:19:00 +0200'
-categories:
-- jekyll
-- javascript
-- scss
+date: "2020-04-29 16:19:00 +0200"
+category:
+  - jekyll
 comments: true
 ---
 
-This is my first site using [`Jekyll`](https://jekyllrb.com/){:target="_blank"}, I switched from the old wordpress site hosted elsewhere to Github Pages.
+This is my first site using [`Jekyll`](https://jekyllrb.com/){:target="\_blank"}, I switched from the old wordpress site hosted elsewhere to Github Pages.
 
-This site is based on [`minima theme`](https://github.com/jekyll/minima){:target="_blank"}, but overrode tiny details as a start.
+This site is based on [`minima theme`](https://github.com/jekyll/minima){:target="\_blank"}, but overrode tiny details as a start.
 
 I changed the typography and added a small javascript code to make the header sticky. Also added a progress bar on top of the sticky header too, simple enough:
 
@@ -93,26 +91,46 @@ This template was supposed to be a simple one, but I have been adding some chang
 One of the things I wanted to do was to create an animation to shrink the header when scrolling down to avoid that the header was too visible for the reader. So, I did some ugly first version of that by just overriding styles with `JS` funtions. Then, I made what I believe is a better approach that was this:
 
 ```js
-    if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
-        document.getElementById("site-header").classList.replace("site-header", "site-header-sm");
-        document.getElementById("site-title").classList.replace("site-title", "site-title-sm");
-        document.getElementById("logo").classList.replace("logo", "logo-sm");
-        document.getElementById("site-nav").classList.replace("site-nav", "site-nav-sm");
-        document.getElementById("progress-container").classList.replace("progress-container", "progress-container-sm");
-        document.getElementById("progress-bar").classList.replace("progress-bar", "progress-bar-sm");
-    } else {
-        document.getElementById("site-header").classList.replace("site-header-sm", "site-header");
-        document.getElementById("site-title").classList.replace("site-title-sm", "site-title");
-        document.getElementById("logo").classList.replace("logo-sm", "logo");
-        document.getElementById("site-nav").classList.replace("site-nav-sm", "site-nav");
-        document.getElementById("progress-container").classList.replace("progress-container-sm", "progress-container");
-        document.getElementById("progress-bar").classList.replace("progress-bar-sm", "progress-bar");
-    }
+if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+  document
+    .getElementById("site-header")
+    .classList.replace("site-header", "site-header-sm");
+  document
+    .getElementById("site-title")
+    .classList.replace("site-title", "site-title-sm");
+  document.getElementById("logo").classList.replace("logo", "logo-sm");
+  document
+    .getElementById("site-nav")
+    .classList.replace("site-nav", "site-nav-sm");
+  document
+    .getElementById("progress-container")
+    .classList.replace("progress-container", "progress-container-sm");
+  document
+    .getElementById("progress-bar")
+    .classList.replace("progress-bar", "progress-bar-sm");
+} else {
+  document
+    .getElementById("site-header")
+    .classList.replace("site-header-sm", "site-header");
+  document
+    .getElementById("site-title")
+    .classList.replace("site-title-sm", "site-title");
+  document.getElementById("logo").classList.replace("logo-sm", "logo");
+  document
+    .getElementById("site-nav")
+    .classList.replace("site-nav-sm", "site-nav");
+  document
+    .getElementById("progress-container")
+    .classList.replace("progress-container-sm", "progress-container");
+  document
+    .getElementById("progress-bar")
+    .classList.replace("progress-bar-sm", "progress-bar");
+}
 ```
 
 But, again, honestly; I don't think this is a good way for doing this and I would love if someone who really knows about this can tell me how is this done the right way.
 
-I also added simple search functionality with jekyll simple search, but I modified `simple-jekyll-search.js` a bit to suit my needs. I added both a `title` and a `separator` parameters to add some custom code in there. And I used examples from `Codepen` like [`this one`](https://codepen.io/Oddgson/pen/VPrYbv){:target="_blank"} to create a style that matches the rest of my blog somehow, I am no designer, I think that is pretty obvious.
+I also added simple search functionality with jekyll simple search, but I modified `simple-jekyll-search.js` a bit to suit my needs. I added both a `title` and a `separator` parameters to add some custom code in there. And I used examples from `Codepen` like [`this one`](https://codepen.io/Oddgson/pen/VPrYbv){:target="\_blank"} to create a style that matches the rest of my blog somehow, I am no designer, I think that is pretty obvious.
 
 I also added a `scroll to top` button, some shadows and tiny color modifications here and there and I pretty much thing that I will not be changing anything else for a while.
 

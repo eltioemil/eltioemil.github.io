@@ -7,27 +7,28 @@ $grey-2: #e5e5e5;
 $grey-3: #f9f9f9;
 $white: #fff;
 $blue: #4a9ae1;
-$shadow-color: rgba(0, 0, 0, .2);
-$shadow-color-2: rgba(0, 0, 0, .15);
+$shadow-color: rgba(0, 0, 0, 0.2);
+$shadow-color-2: rgba(0, 0, 0, 0.15);
 $code-color: #bf616a;
 $spacing-unit: 30px;
 
 // Fonts
-$serif-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Symbol", "Segoe UI Emoji",
-"Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif !default;
-$serif-secondary: Palatino, 'Palatino LT STD', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif;
-$sans-serif: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
-$monospaced: "Menlo", "Inconsolata", "Consolas", "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New",
-monospace;
+$serif-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Symbol",
+  "Segoe UI Emoji", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif !default;
+$serif-secondary: Palatino, "Palatino LT STD", "Palatino Linotype",
+  "Book Antiqua", "Georgia", serif;
+$sans-serif: "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+$monospaced: "Menlo", "Inconsolata", "Consolas", "Roboto Mono", "Ubuntu Mono",
+  "Liberation Mono", "Courier New", monospace;
 
 @mixin box-sizing($type: border-box) {
   -webkit-box-sizing: $type;
-     -moz-box-sizing: $type;
-          box-sizing: $type;
+  -moz-box-sizing: $type;
+  box-sizing: $type;
 }
 
 @mixin transition($args...) {
   -webkit-transition: $args;
-     -moz-transition: $args;
-          transition: $args;
+  -moz-transition: $args;
+  transition: $args;
 }
