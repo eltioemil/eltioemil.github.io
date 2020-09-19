@@ -5,12 +5,10 @@ author: Emil
 permalink: "/cookies/"
 ---
 
-This site does not store any tracking, functional, metrics, marketing, `whatever` cookies. The only cookie this site stores is the one that tracks that you accepted the cookie message. The Cookieception. The only purpose of that cookie is stop showing the cookie message, which can be pretty annoying.
+## A word about cookies
 
-### Why I don't want cookies?
+This site potentially stores 2 cookies on your machine. The first cookie is the cookie consent banner cookie, which stores that you clicked `Got it` or not in the banner. Which is kinda a Cookieception, I might say.
 
-I wanted this site to be as static as it could be, this is also why it does not accept comments.
+Second one is somehow optional. If you never use comments, that cookie will not be generated. But if you log into Github in order to comment, a session token cookie will be stored in so your session is saved for future access. If you don't want this cookie to be stored, you can use your browser capability to block all third-party cookies on my site (or in every site), this way, every time you enter a post, you will be prompted to log into Github and this cookie will never be stored.
 
-If you need to comment or point out something about this blog I can be contacted through my [`Linkedin`](https://www.linkedin.com/in/emiliourena){:target="\_blank"}. I don't like anonymous comments either, so, if you need to tell me anything I expect you to properly identify yourself through Linkedin or at the least I expect you to have the decency to expend a little time creating a fake profile.
-
-Cheers!
+Quite easy, right?

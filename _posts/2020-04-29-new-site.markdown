@@ -4,7 +4,6 @@ layout: post
 date: "2020-04-29 16:19:00 +0200"
 category:
   - jekyll
-comments_id: 3
 ---
 
 This is my first site using [`Jekyll`](https://jekyllrb.com/){:target="\_blank"}, I switched from the old wordpress site hosted elsewhere to Github Pages.

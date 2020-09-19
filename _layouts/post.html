@@ -22,7 +22,7 @@ layout: default
   <div class="post-line"></div>
 
   {{ content }}
-  {% if page.comments_id %}
+  {% if site.enable_comments %}
     {% include comments.html %}
   {% endif %}
 </div>
