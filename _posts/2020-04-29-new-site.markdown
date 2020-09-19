@@ -4,7 +4,7 @@ layout: post
 date: "2020-04-29 16:19:00 +0200"
 category:
   - jekyll
-comments: true
+comments_id: 3
 ---
 
 This is my first site using [`Jekyll`](https://jekyllrb.com/){:target="\_blank"}, I switched from the old wordpress site hosted elsewhere to Github Pages.
@@ -92,39 +92,19 @@ One of the things I wanted to do was to create an animation to shrink the header
 
 ```js
 if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
-  document
-    .getElementById("site-header")
-    .classList.replace("site-header", "site-header-sm");
-  document
-    .getElementById("site-title")
-    .classList.replace("site-title", "site-title-sm");
+  document.getElementById("site-header").classList.replace("site-header", "site-header-sm");
+  document.getElementById("site-title").classList.replace("site-title", "site-title-sm");
   document.getElementById("logo").classList.replace("logo", "logo-sm");
-  document
-    .getElementById("site-nav")
-    .classList.replace("site-nav", "site-nav-sm");
-  document
-    .getElementById("progress-container")
-    .classList.replace("progress-container", "progress-container-sm");
-  document
-    .getElementById("progress-bar")
-    .classList.replace("progress-bar", "progress-bar-sm");
+  document.getElementById("site-nav").classList.replace("site-nav", "site-nav-sm");
+  document.getElementById("progress-container").classList.replace("progress-container", "progress-container-sm");
+  document.getElementById("progress-bar").classList.replace("progress-bar", "progress-bar-sm");
 } else {
-  document
-    .getElementById("site-header")
-    .classList.replace("site-header-sm", "site-header");
-  document
-    .getElementById("site-title")
-    .classList.replace("site-title-sm", "site-title");
+  document.getElementById("site-header").classList.replace("site-header-sm", "site-header");
+  document.getElementById("site-title").classList.replace("site-title-sm", "site-title");
   document.getElementById("logo").classList.replace("logo-sm", "logo");
-  document
-    .getElementById("site-nav")
-    .classList.replace("site-nav-sm", "site-nav");
-  document
-    .getElementById("progress-container")
-    .classList.replace("progress-container-sm", "progress-container");
-  document
-    .getElementById("progress-bar")
-    .classList.replace("progress-bar-sm", "progress-bar");
+  document.getElementById("site-nav").classList.replace("site-nav-sm", "site-nav");
+  document.getElementById("progress-container").classList.replace("progress-container-sm", "progress-container");
+  document.getElementById("progress-bar").classList.replace("progress-bar-sm", "progress-bar");
 }
 ```
 

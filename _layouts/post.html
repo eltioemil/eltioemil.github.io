@@ -22,6 +22,9 @@ layout: default
   <div class="post-line"></div>
 
   {{ content }}
+  {% if page.comments_id %}
+    {% include comments.html %}
+  {% endif %}
 </div>
 
 <div class="pagination">
