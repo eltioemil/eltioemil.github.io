@@ -35,6 +35,3 @@ paginate: 10
 
 # Excludes
 exclude: [Gemfile, Gemfile.lock, emil.gemspec]
-
-# Comments
-enable_comments: true

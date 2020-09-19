@@ -24,16 +24,6 @@ layout: default
   {{ content }}
 </div>
 
-{%- if site.enable_comments -%}
-<script src="https://utteranc.es/client.js"
-        repo="eltioemil/eltioemil.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
-{%- endif -%}
-
 <div class="pagination">
   {% if page.next.url %}
   <a href="{{ page.next.url | prepend: site.baseurl }}" class="left arrow">&#8592;</a>

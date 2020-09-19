@@ -17,6 +17,29 @@
   <script src="{{ "/assets/js/sticky.js" | relative_url }}"></script>
   <script src="{{ "/assets/js/shrink.js" | relative_url }}"></script>
   <script src="{{ "/assets/js/scroll.js" | relative_url }}"></script>
+
+  <!-- Cookie consent -->
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#e5e5e5",
+          "text": "#555555"
+        },
+        "button": {
+          "background": "#979797",
+          "text": "#555555"
+        }
+      },
+      "theme": "edgeless",
+      "position": "top",
+      "content": {
+        "message": "This site does not use cookies at this point, however there is a long explanation for this. If you want to read it click -->",
+        "href": "{{ '/cookies' | prepend: site.baseurl }}/"
+      }
+    });
+  </script>
 </body>
 
 </html>
