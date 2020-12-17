@@ -13,11 +13,9 @@ $code-color: #bf616a;
 $spacing-unit: 30px;
 
 // Fonts
-$serif-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Symbol",
-  "Segoe UI Emoji", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif !default;
-$serif-secondary: Palatino, "Palatino LT STD", "Palatino Linotype",
-  "Book Antiqua", "Georgia", serif;
-$sans-serif: "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+//$serif-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Symbol", "Segoe UI Emoji", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif !default;
+$serif-secondary: Palatino, "Palatino LT STD", "Palatino Linotype", "Book Antiqua", "Georgia", serif;
+//$sans-serif: "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
 $monospaced: "Menlo", "Inconsolata", "Consolas", "Roboto Mono", "Ubuntu Mono",
   "Liberation Mono", "Courier New", monospace;
 
@@ -32,3 +30,12 @@ $monospaced: "Menlo", "Inconsolata", "Consolas", "Roboto Mono", "Ubuntu Mono",
   -moz-transition: $args;
   transition: $args;
 }
+
+$serif-primary: 'Roboto', sans-serif;
+//$serif-secondary: 'Roboto', sans-serif;
+$sans-serif: 'Robot', sans-serif;
+
+
+//$font-family:       'Open Sans', sans-serif;
+//$variant-family:    'Lora', Georgia, serif;
+
