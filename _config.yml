@@ -12,6 +12,7 @@ author:
   email: nope@nope.es
 
 # Build settings
+highlighter: none # We use prism.js
 markdown: kramdown
 include:
   - _pages

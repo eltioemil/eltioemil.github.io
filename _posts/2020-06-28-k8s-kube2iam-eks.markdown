@@ -31,7 +31,7 @@ We need to allow workers to assume whatever roles we create in the future for wo
 
 > ⚠ **Do not just copy paste without reading, please.**
 
-```sh
+```hcl
 data "aws_iam_policy_document" "cluster_kube2iam_document" {
   statement {
     effect = "Allow"
@@ -50,7 +50,7 @@ So I suggest to be really careful with this and make sure about two things:
 - One, our worker IAM roles have the strictly necessary privileges to run our cluster.
 - Two, we create a role prefix or a custom path or both so we make sure we can only assume the roles we want and not every role in the account. An example for this would be:
 
-```sh
+```hcl
 data "aws_caller_identity" "current" {}
 
 data "aws_iam_policy_document" "cluster_kube2iam_document" {
@@ -70,7 +70,7 @@ This way, it will only be able to assume the roles that match this "filter" and 
 
 Now we have our policy, we just attach it to the worker role. If, for any reason, we need to run a POD in the masters that needs to use `kube2iam`, we will attach this policy to our master IAM role too. An example would be:
 
-```sh
+```hcl
 resource "aws_iam_policy" "cluster_kube2iam_policy" {
   name   = "kube2iam-assume-policy"
   path   = "/whatever/custom/path/" #This is optional
@@ -89,7 +89,7 @@ Now, our worker nodes can assume any roles that match our pattern.
 
 Now we create a IAM role that will trust our worker nodes:
 
-```sh
+```hcl
 data "aws_iam_policy_document" "ec2_assume_role_policy_autoscaler" {
   statement {
     actions = ["sts:AssumeRole"]
@@ -112,7 +112,7 @@ resource "aws_iam_role" "cluster_autoscaler" {
 
 And, following our Cluster Autoscaler example, we will create a role that can modify our workers ASG:
 
-```sh
+```hcl
 data "aws_iam_policy_document" "cluster_autoscaler_document" {
   statement {
     effect = "Allow"
@@ -153,7 +153,7 @@ What we did here is to create an IAM role that can be assumed by our worker node
 
 The only missing step is to grant our PODs permission to use this IAM role. I used helm provider for kubernetes to deploy Cluster Autoscaler, like we mentioned in the [`previous post`](k8s-kube2iam-eks.html){:target="\_blank"}. So, following that, what we need to do is to create an annotation in our PODs definition, or, in my case, to the deployment template through a helm chart, this is a basic example:
 
-```sh
+```hcl
 resource "helm_release" "cluster_autoscaler" {
   name       = "cluster-autoscaler"
   namespace  = var.your_namespace

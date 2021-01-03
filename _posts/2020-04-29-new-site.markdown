@@ -12,7 +12,7 @@ This site is based on [`minima theme`](https://github.com/jekyll/minima){:target
 
 I changed the typography and added a small javascript code to make the header sticky. Also added a progress bar on top of the sticky header too, simple enough:
 
-```js
+```javascript
 window.onscroll = function () {
   stickyHeaderProgress();
 };
@@ -75,7 +75,7 @@ Cheers!
 
 There was an issue with the javascript code in chrome mobile browser. As you might know, Chrome for mobile hides the address bar on scroll down, so, to avoid that offset on scrolling, I used window.innerHeight instead of clientHeight on documentElement. This might be basic for frontend developers, but for me is something I just discovered now, LOL:
 
-```js
+```
 var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
 var height = document.documentElement.scrollHeight - window.innerHeight;
 var scrolled = (winScroll / height) * 100;
@@ -85,11 +85,11 @@ document.getElementById("theProgressBar").style.width = scrolled + "%";
 
 ### Edit 2
 
-This template was supposed to be a simple one, but I have been adding some changes both visual and functional. Honestly, I enjoyed learning a bit more about Jekyll and Javascript, even though I just did tiny things, babysteps comparing with a pro frontender.
+This template was supposed to be a simple one, but I have been adding some changes both visual and functional. Honestly, I enjoyed learning a bit more about Jekyll and Javascript, even though I just did tiny things, baby steps comparing with a pro frontender.
 
 One of the things I wanted to do was to create an animation to shrink the header when scrolling down to avoid that the header was too visible for the reader. So, I did some ugly first version of that by just overriding styles with `JS` funtions. Then, I made what I believe is a better approach that was this:
 
-```js
+```javascript
 if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
   document.getElementById("site-header").classList.replace("site-header", "site-header-sm");
   document.getElementById("site-title").classList.replace("site-title", "site-title-sm");

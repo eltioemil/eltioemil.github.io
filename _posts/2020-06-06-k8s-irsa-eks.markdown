@@ -12,13 +12,13 @@ For the last couple of weeks I've been setting up kubernetes with AWS EKS servic
 
 Well, as you can google this to find more information about it, in a nutshell, `IRSA` stands for IAM Roles for Service Accounts. Meaning that is a mechanism to attach an IAM role to a kubernetes service account and manage privileges through IAM roles and policies instead of using RBAC. I am not going to go through why someone would like to use this instead of RBAC, this is not the post for that. But, assuming we want to use it, let's see how to do that.
 
-If you need more information, just let me google it for you: [`What is EKS IRSA`?](https://lmgtfy.com/?q=what+is+EKS+`IRSA`&pp=1){:target="\_blank"}
+If you need more information, just let me google it for you: [`What is EKS IRSA?`](https://lmgtfy.com/?q=what+is+EKS+`IRSA`&pp=1){:target="\_blank"}
 
 ### **First piece of the puzzle, OpenID provider**
 
 EKS makes use of [`OpenID connect`](https://openid.net/connect/){:target="\_blank"} to stablish trust. Like I mentioned, in my case I was using terraform in order to automate infrastructure deployment, so I will use it for the code examples. If you create this manually it will be way easier as AWS Console (or cli) would do some steps automatically for you. But, if you want to use terraform, you will have to perform an extra step. I will explain that below, but this is basically how we create an OIDC (out of OpenID connector) in AWS with terraform (assuming we already created our EKS cluster called 'eks'):
 
-```sh
+```hcl
 resource "aws_iam_openid_connect_provider" "eks_openid_provider" {
   client_id_list  = ["sts.amazonaws.com"]
   thumbprint_list = [data.external.thumbprint.result.thumbprint]
@@ -28,13 +28,13 @@ resource "aws_iam_openid_connect_provider" "eks_openid_provider" {
 
 Like I have mentioned before, if you create this with AWS console, it will populate thumbprint_list automatically, but, as we are going to do it though terraform we will have to create it ourselves. Basically the thumbprint is obtained from the CA root certificate from `oidc.eks.[YOUR_AWS_REGION].amazonaws.com` then we get the fingerprint from it and remove colon characters (:) from it, and that is the value we need to insert in the resource in json format like this:
 
-```sh
+```json
 "{"thumbprint": "990F4193972F2BECF12DDEDA5237F9C952F20D9E"}"
 ```
 
 We can do this manually or create a script to do this when we create our infrastructure. A dirty one liner that will work on Linux and Mac could be:
 
-```sh
+```bash
 openssl s_client -servername oidc.eks.[YOUR_REGION].amazonaws.com -showcerts -connect oidc.eks.[YOUR_REGION].amazonaws.com:443 2>&- | tail -r | sed -n '/-----END CERTIFICATE-----/,/-----BEGIN CERTIFICATE-----/p; /-----BEGIN CERTIFICATE-----/q' | tail -r | openssl x509 -fingerprint -noout | sed 's/://g' | awk -F= '{print tolower($2)}'
 ```
 
@@ -42,7 +42,7 @@ This can be done in more elegant ways but I decided to not use `IRSA` in my clus
 
 After we obtained our thumbprint, we only need to set the output in the json format explained above and we can invoke the script it with:
 
-```sh
+```hcl
 data "external" "thumbprint" {
   program = ["${path.module}/your-awesome-oidc-thumbprint-script.sh", data.aws_region.current.name]
 }
@@ -56,7 +56,7 @@ Now we need to create a IAM role that makes usage of the OIDC. Because if we try
 
 Let's use the Cluster Autoscaler as an example for this. We will give the Autoscaler permissions to do it's autoscaling thing through `IRSA`, which is better than using kube2iam because this way we would not need to give permissions to our worker nodes. So, let's create our Autoscaling policy that will allow to modify some values in our worker nodes autoscaling groups. This is a policy for that:
 
-```sh
+```hcl
 data "aws_iam_policy_document" "cluster_autoscaler_document" {
   statement {
     sid    = "AllowDescribeAll"
@@ -89,7 +89,7 @@ resource "aws_iam_policy" "cluster_autoscaler_policy" {
 
 And the role where we will be attaching this policy:
 
-```sh
+```hcl
 resource "aws_iam_role" "autoscaler" {
   name               = "eks_my-fancy-cluster-autoscaler-role"
   path               = "/"
@@ -134,7 +134,7 @@ This might seem obvious but in many, many documentations there was this copy/pas
 
 Going back to our autoscaler, now we need to attach our autoscaler policy to this role we just created:
 
-```sh
+```hcl
 resource "aws_iam_role_policy_attachment" "cluster_autoscaler_attach" {
   role       = aws_iam_role.autoscaler.id
   policy_arn = aws_iam_policy.cluster_autoscaler_policy.arn
@@ -147,11 +147,11 @@ And that's it, we now have a IAM role that can use our OIDC to obtain trust in o
 
 Actually, we already did this. As we specified our relationship with the service account, in our example, `autoscaler-service-account` in our role. What it's left to do is to use it in our deployment, replicaset, pod, etc.
 
-In my case I was going full terraform, so I used helm terraform provider in order to create a helm release through terrafom using the stable official Cluster Autoscaler helm chart. If you do this, is quite easy to configure, [`the chart is ready for using IRSA`](https://github.com/helm/charts/tree/master/stable/cluster-autoscaler#iam-roles-for-service-accounts-irsa){:target="\_blank"} so you only need to pass an annotation in the service account annotations.
+In my case I was going full terraform, so I used helm terraform provider in order to create a helm release through terraform using the stable official Cluster Autoscaler helm chart. If you do this, is quite easy to configure, [`the chart is ready for using IRSA`](https://github.com/helm/charts/tree/master/stable/cluster-autoscaler#iam-roles-for-service-accounts-irsa){:target="\_blank"} so you only need to pass an annotation in the service account annotations.
 
 This, translated into terraform helm provider, becomes a set. And, this is what nobody explains, you need to scape special characters in order to make it work:
 
-```sh
+```hcl
   set {
     name  = "rbac.serviceAccountAnnotations.eks\\.amazonaws\\.com/role-arn"
     value = aws_iam_role.autoscaler.arn
