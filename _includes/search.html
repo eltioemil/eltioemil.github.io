@@ -1,10 +1,6 @@
----
-layout: default_no_footer
----
-
 {%- if site.enable_search -%}
 <div class="search__container" id="search__container">
-    <input type="text" class="search__input" id="search__input" placeholder="     Search...">
+    <input type="text" class="search__input" id="search__input" placeholder="Search...">
 </div>
 
 <div class="search__results" id="search__results">
@@ -18,9 +14,7 @@ layout: default_no_footer
         searchInput: document.getElementById('search__container'),
         resultsContainer: document.getElementById('search__results-container'),
         json: '{{ "/" | relative_url }}search.json',
-        // searchTitle: '<div class="catalogue-title">Search results:</div>',
         searchResultTemplate: '<a href="{{ site.baseurl }}{url}" class="catalogue-item"><div><h1 class="catalogue-title">{title}</h1><div class="catalogue-line"></div><p>{content}</p></div></a>',
-        // searchSeparator: '<div class="divider-wrapper"><div class="divider div-transparent"></div></div>',
         fuzzy: true
     })
 </script>
