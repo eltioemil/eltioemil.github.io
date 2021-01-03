@@ -31,6 +31,12 @@ It uses a bot installed in Cloudfare Jobs to centralise and secure Github issue 
 
 #### Edit 4:
 
-I didn't like the default syntax highlighter so I decided to add [`prismjs.com`](prismjs.com){:target="\_blank"}. It's a pretty easy tool to use, you just select the languages, plugins and themes you want and it will generate 2 files, javascript and css. You only need to load them into your code and disable jekyll default highlighter by adding `highlighter: none` on your `_config.yml` file.
+I didn't like the default syntax highlighter so I decided to add [`prismjs.com`](prismjs.com){:target="\_blank"}. It's a pretty easy tool to use, you just select the languages, plugins and themes you want and it will generate 2 files, javascript and css. You only need to load them into your code and disable jekyll default highlighter by adding in your `_config.yml` this little yaml config:
+
+```yaml
+kramdown: 
+  syntax_highlighter_opts:
+    disable : true
+```
 
 There are plenty of themes and plugins to select, and language support is huge, it also supports many popular configuration syntaxes for Admins, which is my preference.
