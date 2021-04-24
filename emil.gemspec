@@ -19,8 +19,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "jemoji"
   spec.add_runtime_dependency "jekyll-sitemap"
   spec.add_runtime_dependency "jekyll-target-blank"
-  spec.add_runtime_dependency "jekyll-admin"
-
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake", "~> 12.3.3"
