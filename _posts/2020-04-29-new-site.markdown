@@ -109,7 +109,7 @@ if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
 
 But, again, honestly; I don't think this is a good way for doing this and I would love if someone who really knows about this can tell me how is this done the right way.
 
-I also added simple search functionality with jekyll simple search, but I modified `simple-jekyll-search.js` a bit to suit my needs. I added both a `title` and a `separator` parameters to add some custom code in there. And I used examples from `Codepen` like [`this one`](https://codepen.io/Oddgson/pen/VPrYbv){:target="\_blank"} to create a style that matches the rest of my blog somehow, I am no designer, I think that is pretty obvious.
+I also added simple search functionality with jekyll simple search, but I modified `simple-jekyll-search.js` a bit to suit my needs. I added both a `title` and a `separator` parameters to add some custom code in there. And I used examples from `Codepen` like [`this one`](https://codepen.io/Oddgson/pen/VPrYbv) to create a style that matches the rest of my blog somehow, I am no designer, I think that is pretty obvious.
 
 I also added a `scroll to top` button, some shadows and tiny color modifications here and there and I pretty much thing that I will not be changing anything else for a while.
 

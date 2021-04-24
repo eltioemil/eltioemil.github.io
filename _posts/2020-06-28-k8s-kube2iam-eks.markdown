@@ -6,11 +6,11 @@ category:
   - kubernetes
 ---
 
-In the last entry on this blog I wrote about giving permissions to k8s service accounts with IRSA and OIDC in EKS clusters. But, before that method was available, there was (and still is) a repository called [`kube2iam`](https://github.com/jtblin/kube2iam){:target="\_blank"} created by Jerome Touffe-Blin, which allowed to use IAM roles to give permissions to our deployments, PODs, replicasets, etc.
+In the last entry on this blog I wrote about giving permissions to k8s service accounts with IRSA and OIDC in EKS clusters. But, before that method was available, there was (and still is) a repository called [`kube2iam`](https://github.com/jtblin/kube2iam) created by Jerome Touffe-Blin, which allowed to use IAM roles to give permissions to our deployments, PODs, replicasets, etc.
 
 Long story short, what I do (and I will explain further) is to allow worker IAM role to assume whatever the role I need (with some restrictions). Then, I pass this role to the PODs through annotations. And this will let the node where the PODs are running to assume permissions to achieve what the POD needs.
 
-Obviously, this only makes sense when you try to get, create or destroy AWS resources from your PODs (or Jobs), for instance, [`Kubernetes Cluster Autoscaler`](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler){:target="\_blank"} will need permissions in order to change ASG values from within a POD in order to achieve scale up or down. This is a common example on how `kube2iam` is used and I will use it for this post, also is the same that I used in the other post so I will be able to see how different they are.
+Obviously, this only makes sense when you try to get, create or destroy AWS resources from your PODs (or Jobs), for instance, [`Kubernetes Cluster Autoscaler`](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler) will need permissions in order to change ASG values from within a POD in order to achieve scale up or down. This is a common example on how `kube2iam` is used and I will use it for this post, also is the same that I used in the other post so I will be able to see how different they are.
 
 ### **TL;DR**
 

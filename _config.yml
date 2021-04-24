@@ -31,6 +31,12 @@ plugins:
   - jekyll-seo-tag
   - jemoji
   - jekyll-sitemap
+  - jekyll-target-blank
+  - jekyll-admin
+
+# Jekyll admin
+jekyll_admin:
+  homepage: "pages"
 
 # Permalinks
 permalink: /:year-:month-:day/:title

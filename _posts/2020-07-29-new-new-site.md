@@ -27,7 +27,7 @@ I decided to stop using Hyvor Talk to manage site comments due they use Google A
 
 I started looking for new ways to post comments on this site, disqus was the most extended solution apparently, but it also tracks and shows adds in your site. But then I found this tiny project called [`https://utteranc.es/`](https://utteranc.es/){:target="\_blank"}, which was pretty nice an clean. It is based on Github issues to store your comments, but it creates the issues for you and it does not make you go to Github if you want to post a comment because it embeds a comment box in your site.
 
-It uses a bot installed in Cloudfare Jobs to centralise and secure Github issue creation, so you don't have to store plain secrets in your site [like this one](https://aristath.github.io/blog/static-site-comments-using-github-issues-api){:target="\_blank"} LOL. And is pretty nice and easy to use. So, despite the fact that it would be nice to disable token cookie creation (for GDPR), it's a great way to enable Github stored comments in your site.
+It uses a bot installed in Cloudfare Jobs to centralise and secure Github issue creation, so you don't have to store plain secrets in your site [like this one](https://aristath.github.io/blog/static-site-comments-using-github-issues-api) LOL. And is pretty nice and easy to use. So, despite the fact that it would be nice to disable token cookie creation (for GDPR), it's a great way to enable Github stored comments in your site.
 
 #### Edit 4:
 

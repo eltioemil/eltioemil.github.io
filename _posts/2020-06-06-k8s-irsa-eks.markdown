@@ -16,7 +16,7 @@ If you need more information, just let me google it for you: [`What is EKS IRSA?
 
 ### **First piece of the puzzle, OpenID provider**
 
-EKS makes use of [`OpenID connect`](https://openid.net/connect/){:target="\_blank"} to stablish trust. Like I mentioned, in my case I was using terraform in order to automate infrastructure deployment, so I will use it for the code examples. If you create this manually it will be way easier as AWS Console (or cli) would do some steps automatically for you. But, if you want to use terraform, you will have to perform an extra step. I will explain that below, but this is basically how we create an OIDC (out of OpenID connector) in AWS with terraform (assuming we already created our EKS cluster called 'eks'):
+EKS makes use of [`OpenID connect`](https://openid.net/connect/) to stablish trust. Like I mentioned, in my case I was using terraform in order to automate infrastructure deployment, so I will use it for the code examples. If you create this manually it will be way easier as AWS Console (or cli) would do some steps automatically for you. But, if you want to use terraform, you will have to perform an extra step. I will explain that below, but this is basically how we create an OIDC (out of OpenID connector) in AWS with terraform (assuming we already created our EKS cluster called 'eks'):
 
 ```hcl
 resource "aws_iam_openid_connect_provider" "eks_openid_provider" {
@@ -147,7 +147,7 @@ And that's it, we now have a IAM role that can use our OIDC to obtain trust in o
 
 Actually, we already did this. As we specified our relationship with the service account, in our example, `autoscaler-service-account` in our role. What it's left to do is to use it in our deployment, replicaset, pod, etc.
 
-In my case I was going full terraform, so I used helm terraform provider in order to create a helm release through terraform using the stable official Cluster Autoscaler helm chart. If you do this, is quite easy to configure, [`the chart is ready for using IRSA`](https://github.com/helm/charts/tree/master/stable/cluster-autoscaler#iam-roles-for-service-accounts-irsa){:target="\_blank"} so you only need to pass an annotation in the service account annotations.
+In my case I was going full terraform, so I used helm terraform provider in order to create a helm release through terraform using the stable official Cluster Autoscaler helm chart. If you do this, is quite easy to configure, [`the chart is ready for using IRSA`](https://github.com/helm/charts/tree/master/stable/cluster-autoscaler#iam-roles-for-service-accounts-irsa) so you only need to pass an annotation in the service account annotations.
 
 This, translated into terraform helm provider, becomes a set. And, this is what nobody explains, you need to scape special characters in order to make it work:
 
