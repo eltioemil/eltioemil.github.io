@@ -83,6 +83,8 @@ GEM
     nokogiri (1.11.3)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    nokogiri (1.11.3-x86_64-linux)
+      racc (~> 1.4)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     public_suffix (4.0.6)
@@ -105,6 +107,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-linux-musl
 
 DEPENDENCIES
   bundler
@@ -112,4 +115,4 @@ DEPENDENCIES
   rake (~> 12.3.3)
 
 BUNDLED WITH
-   2.1.4
+   2.2.2
