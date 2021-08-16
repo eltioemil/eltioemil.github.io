@@ -3,7 +3,14 @@ version: "2"
 services:
   jekyll:
     image: jekyll/jekyll:latest
-    command: jekyll serve --watch --force_polling --verbose
+    entrypoint:
+      - /bin/bash
+      - '-c'
+      - |
+        /bin/sh << HERE
+        bundle install
+        jekyll serve --watch --force-polling --verbose
+        HERE
     ports:
       - 4000:4000
     volumes:
