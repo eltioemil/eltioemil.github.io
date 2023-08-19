@@ -19,6 +19,7 @@ kramdown:
     disable : true
 include:
   - _pages
+  - .well-known
 
 # Assets
 sass:
