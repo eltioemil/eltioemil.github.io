@@ -9,6 +9,7 @@ services:
       - |
         /bin/sh << HERE
         bundle install
+        bundle add webrick
         jekyll serve --watch --force-polling --verbose
         HERE
     ports:

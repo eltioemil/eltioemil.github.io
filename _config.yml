@@ -4,6 +4,7 @@ description: "Emil's site"
 baseurl: ""
 url: ""
 enable_search: true
+excerpt_size: 60
 
 # Author
 author:

@@ -17,11 +17,8 @@ I have worked for several companies doing what I like the most: [`Idealista`](ht
 
 I am a [`full remote engineer`](https://weworkremotely.com/blog) , and I really embrace remote work and it's benefits both for the employer and the employee.
 
-And I have two cats and a dog:
+And I have two cats and a dog.
 
-![Cats]({{ site.baseurl }}/IMG_20200620_191342.jpg){: style="float:left; width: 50%; padding: 5px;"}
-![Dog]({{ site.baseurl }}/IMG_20200724_193547.jpg){: style="float:right; width: 50%; padding: 5px;"}
-
-<br>If you are interested on my skills and experience, you may contact with me, we can be buds on [`Linkedin`](https://www.linkedin.com/in/emiliourena) and chat a bit about it.
+If you are interested on my skills and experience, you may contact with me, we can be buds on [`Linkedin`](https://www.linkedin.com/in/emiliourena) and chat a bit about it.
 
 Cheers!
