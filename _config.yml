@@ -10,7 +10,7 @@ excerpt_size: 60
 author:
   name: El tío Emil
   url: https://eltioemil.es
-  email: nope@nope.es
+  email: iam@eltioemil.es
 
 # Build settings
 markdown: kramdown
