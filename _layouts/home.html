@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="button-group filter-button-group">
-  <h1 class="category-title">Browse categories</h1>
+  <h1 class="category-title">Categories:</h1>
   {% for category in site.categories %}
   <a class="button" data-filter=".{{ category | first }}">{{ category | first }}</a>
   {% endfor %}

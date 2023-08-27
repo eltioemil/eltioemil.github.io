@@ -1,7 +1,7 @@
 a.button {
   display: inline-block;
-  padding: 0.15em 0.8em;
-  border: 0.1em solid $grey-1;
+  padding: 0.15em 0.4em;
+  // border: 0.1em solid $grey-1;
   margin: 0 0.3em 0.3em 0;
   border-radius: 0.12em;
   box-sizing: border-box;
@@ -20,7 +20,7 @@ a.button:hover {
 
 a.button.active {
   background: $grey-1;
-  border: 1px solid $grey-1;
+  // border: 1px solid $grey-1;
   color: $white;
 }
 
@@ -34,8 +34,11 @@ a.button.active {
 .button-group {
   padding-top: 1em;
   text-align: center;
+  display: -webkit-inline-box;
 }
 
 h1.category-title {
   font-size: 1.4em;
+  display: inline-block;
+  padding-right: 0.3em;
 }
